@@ -18,12 +18,14 @@ function fetchMoviesAndHandleLoading() {
             handleFetchError(error);
         });
 }
+
 fetchMoviesAndHandleLoading();
 
 // Show loading message
 function showLoadingMessage(element) {
     element.style.display = "block";
 }
+
 // Hide loading message
 function hideLoadingMessage(element) {
     element.style.display = "none";
@@ -55,7 +57,6 @@ function handleFetchError(error) {
 }
 
 
-
 const createMovie = async (movie) => {
     try {
         const url = 'http://localhost:3000/movies';
@@ -72,10 +73,11 @@ const createMovie = async (movie) => {
     } catch (error) {
         console.error(error);
     }
+    createMovie(newMovie).then(() => fetch("http://localhost:3000/movies")).then(resp => resp.json()).then(data => console.log(data));
 }
-const editMovie = async (movie) => {
+const editMovie = async (id, movie) => {
     try {
-        const url = 'http://localhost:3000/movies';
+        const url = `http://localhost:3000/movies/${id}`;
         const options = {
             method: 'PATCH',
             headers: {
@@ -91,15 +93,55 @@ const editMovie = async (movie) => {
     }
 }
 
-    document.querySelector("#addMovieSubmit").addEventListener("click",(e)=>{
-        e.preventDefault();
-        alert("fff")
-        const newMovie = {
-            "title": document.querySelector("#new-movieTitle").value,
-            "rating": document.querySelector("#new-movieRating").value,
-            "movieSummary":document.querySelector("#new-movieSummary").value,
+function populateDropDown() {
+    fetch("http://localhost:3000/movies")
+        .then(resp => resp.json())
+        .then(data => {
+        console.log(data);
+        const dropDown = document.getElementById("edit-select");
+        for (let movie of data) {
+            const option = document.createElement("option");
+            option.value = movie.id;
+            option.innerText = movie.title;
+            dropDown.appendChild(option);
         }
-
-        createMovie(newMovie).then(() => fetch("http://localhost:3000/movies")).then(resp => resp.json()).then(data => console.log(data));
     })
+        .catch(error => console.error('Error fetching movies', error));
+}
+
+document.querySelector("#edit-select").addEventListener("change", async (e) => {
+    const movieId = e.target.value;
+    fetch("http://localhost:3000/movies/" + movieId)
+        .then(resp => resp.json())
+        .then(movie => {
+        document.querySelector("#editMovieTitle").value = movie.title;
+        document.querySelector("#editMovieRating").value = movie.rating;
+        document.querySelector("#editMovieSummary").value = movie.movieSummary;
+    })
+        .catch(error => console.error('Error fetching movie details', error));
+
+});
+document.forms.editForm.addEventListener("submit", async e => {
+    e.preventDefault();
+    const movieID = document.querySelector("#edit-select").value;
+    const title = document.querySelector("#editMovieTitle").value;
+    const rating = document.querySelector("#editMovieRating").value;
+    const movieSummary = document.querySelector("#editMovieSummary").value;
+    // editMovie(movieID, {title, rating, movieSummary});
+    try {
+        await editMovie(movieID, { title, rating, movieSummary });
+        populateDropDown();
+    } catch (error) {
+        console.error('Error editing movie:', error);
+    }});
+
+document.querySelector("#addMovieSubmit").addEventListener("click", (e) => {
+    e.preventDefault();
+    alert("fff")
+    const newMovie = {
+        "title": document.querySelector("#new-movieTitle").value,
+        "rating": document.querySelector("#new-movieRating").value,
+        "movieSummary": document.querySelector("#new-movieSummary").value,
+    }
+})
 
