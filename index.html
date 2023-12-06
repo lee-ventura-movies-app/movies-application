@@ -10,6 +10,38 @@
 <body>
     <div id="loading-message">Loading...</div>
     <div id="movie-list"></div>
+
+
+    <div id="movie-control">
+        <div id="movie-add">
+            <h2>Add a movie</h2>
+            <form action="">
+                <label for="new-movieTitle">Movie Title</label>
+                <input type="text" name="movieName" id="new-movieTitle">
+                <label for="new-movieRating">Movie rating</label>
+                <input type="text" name="movieTitle" id="new-movieRating">
+                <label for="new-movieSummary">Movie Summary</label>
+                <input type="text" name="movieSummary" id="new-movieSummary">
+                <input type="submit" value="submit" id="addMovieSubmit">
+            </form>
+        </div>
+        <div id="movie-edit">
+            <h2>Edit Movie</h2>
+            <form action="">
+                <label for="movieNameEdit">Movie Name</label>
+                <input type="text" name="movieName" id="movieNameEdit">
+                <label for="movieTitleEdit">Movie Title</label>
+                <input type="text" name="movieTitle" id="movieTitleEdit">
+                <label for="movieSummaryEdit">Movie Summary</label>
+                <input type="text" name="movieSummary" id="movieSummaryEdit">
+            </form>
+        </div>
+
+
+
+    </div>
+
+
     <script src="movies-application.js"></script>
 </body>
 </html>
