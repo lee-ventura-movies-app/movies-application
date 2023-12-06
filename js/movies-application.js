@@ -1,5 +1,7 @@
 "use strict";
 
+
+
 // Loading message
 const loadingMessage = document.getElementById("loading-message");
 
@@ -9,9 +11,9 @@ function fetchMoviesAndHandleLoading() {
     // Fetch from movies.json
     fetch("http://localhost:3000/movies")
         .then(response => response.json())
-        .then(function (data) {
+        .then(data => {
+            renderMovies(data)
             hideLoadingMessage(loadingMessage);
-            displayMovies(data);
         })
         .catch(error => {
             hideLoadingMessage(loadingMessage);
@@ -73,7 +75,6 @@ const createMovie = async (movie) => {
     } catch (error) {
         console.error(error);
     }
-    createMovie(newMovie).then(() => fetch("http://localhost:3000/movies")).then(resp => resp.json()).then(data => console.log(data));
 }
 const editMovie = async (id, movie) => {
     try {
@@ -93,21 +94,6 @@ const editMovie = async (id, movie) => {
     }
 }
 
-function populateDropDown() {
-    fetch("http://localhost:3000/movies")
-        .then(resp => resp.json())
-        .then(data => {
-        console.log(data);
-        const dropDown = document.getElementById("edit-select");
-        for (let movie of data) {
-            const option = document.createElement("option");
-            option.value = movie.id;
-            option.innerText = movie.title;
-            dropDown.appendChild(option);
-        }
-    })
-        .catch(error => console.error('Error fetching movies', error));
-}
 
 document.querySelector("#edit-select").addEventListener("change", async (e) => {
     const movieId = e.target.value;
@@ -116,7 +102,7 @@ document.querySelector("#edit-select").addEventListener("change", async (e) => {
         .then(movie => {
         document.querySelector("#editMovieTitle").value = movie.title;
         document.querySelector("#editMovieRating").value = movie.rating;
-        document.querySelector("#editMovieSummary").value = movie.movieSummary;
+        document.querySelector("#editMovieSummary").value = movie.summary;
     })
         .catch(error => console.error('Error fetching movie details', error));
 
@@ -126,7 +112,19 @@ document.forms.editForm.addEventListener("submit", async e => {
     const movieID = document.querySelector("#edit-select").value;
     const title = document.querySelector("#editMovieTitle").value;
     const rating = document.querySelector("#editMovieRating").value;
-    const movieSummary = document.querySelector("#editMovieSummary").value;
+    const summary = document.querySelector("#editMovieSummary").value;
+    editMovie(movieID, {title, rating, summary});
+
+    /*Render movie function*/
+});
+
+/*
+document.forms.editForm.addEventListener("submit", async e => {
+    e.preventDefault();
+    const movieID = 4;
+    const title = "Diff Title";
+    const rating = "2";
+    const movieSummary = "new summary";
     // editMovie(movieID, {title, rating, movieSummary});
     try {
         await editMovie(movieID, { title, rating, movieSummary });
@@ -134,6 +132,13 @@ document.forms.editForm.addEventListener("submit", async e => {
     } catch (error) {
         console.error('Error editing movie:', error);
     }});
+*/
+
+
+
+
+
+
 
 document.querySelector("#addMovieSubmit").addEventListener("click", (e) => {
     e.preventDefault();
@@ -141,7 +146,40 @@ document.querySelector("#addMovieSubmit").addEventListener("click", (e) => {
     const newMovie = {
         "title": document.querySelector("#new-movieTitle").value,
         "rating": document.querySelector("#new-movieRating").value,
-        "movieSummary": document.querySelector("#new-movieSummary").value,
+        "summary": document.querySelector("#new-movieSummary").value,
     }
+    createMovie(newMovie).then(() => fetch("http://localhost:3000/movies")).then(resp => resp.json()).then(data => console.log(data));
+
 })
 
+/*Renders movie cards*/
+function renderMovies(movies) {
+    document.querySelector("#movie-list").innerHTML = "";
+    for (let movie of movies) {
+        createMovieCard(movie)
+    }
+    console.log("something happens")
+}
+
+
+/*Creates a new movie card*/
+function createMovieCard(movie) {
+    let card = document.createElement("div");
+    let title = movie.title;
+    let rating = movie.rating;
+    let summary = movie.summary;
+
+    card.classList.add("movie-card")
+    card.innerHTML = `
+    <img alt="" src="">
+    <h3>${title}</h3>
+    <p>Rating: ${rating}</p>
+    <p>${summary}</p>
+    `
+
+    document.querySelector("#movie-list").append(card)
+}
+
+fetch("http://localhost:3000/movies").then(resp => resp.json()).then(data =>{ console.log(data);
+    renderMovies(data);}
+)

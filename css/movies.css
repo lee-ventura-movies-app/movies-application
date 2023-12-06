@@ -1,0 +1,25 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+#movie-list{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: start;
+    align-items: start;
+}
+
+.movie-card{
+    min-width: 200px;
+    width: 15%;
+    background-color: grey;
+    margin: 1em;
+
+    & img{
+        height: 100px;
+        width: 100%;
+
+    }
+}

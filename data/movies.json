@@ -4,30 +4,30 @@
       "id": 1,
       "title": "Shrek",
       "rating": 5,
-      "movieSummary": ""
+      "summary": ""
     },
     {
       "title": "Garfield at Large",
       "rating": 5,
-      "movieSummary": "something",
+      "summary": "something",
       "id": 2
     },
     {
       "title": "Garfield at Large",
       "rating": 5,
-      "movieSummary": "something",
+      "summary": "something",
       "id": 3
     },
     {
       "title": "",
       "rating": "",
-      "movieSummary": "",
+      "summary": "",
       "id": 4
     },
     {
       "title": "new movie",
       "rating": "4",
-      "movieSummary": "a summary",
+      "summary": "a summary",
       "id": 5
     }
   ]
