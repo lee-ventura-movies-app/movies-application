@@ -99,23 +99,6 @@ document.forms.editForm.addEventListener("submit", async e => {
     /*Render movie function*/
 });
 
-/*
-document.forms.editForm.addEventListener("submit", async e => {
-    e.preventDefault();
-    const movieID = 4;
-    const title = "Diff Title";
-    const rating = "2";
-    const movieSummary = "new summary";
-    // editMovie(movieID, {title, rating, movieSummary});
-    try {
-        await editMovie(movieID, { title, rating, movieSummary });
-        populateDropDown();
-    } catch (error) {
-        console.error('Error editing movie:', error);
-    }});
-*/
-
-
 document.querySelector("#addMovieSubmit").addEventListener("click", (e) => {
     e.preventDefault();
     let searchTitle = prompt("Add a Movie")
@@ -199,16 +182,9 @@ function createMovieCard(movie) {
 // Get the modal
 var modal = document.getElementById("myModal");
 
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
-
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks on the button, open the modal
-btn.onclick = function () {
-    modal.style.display = "block";
-}
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function () {
@@ -219,6 +195,17 @@ span.onclick = function () {
 window.onclick = function (event) {
     if (event.target === modal) {
         modal.style.display = "none";
+    } if (event.target === document.querySelector("#navModal")){
+        closeModal();
     }
+};
+// Navbar Modal
+function openModal() {
+    document.getElementById("navModal").style.display = "flex";
 }
+function closeModal() {
+    document.getElementById("navModal").style.display = "none";
+}
+// End NavBar Modal
+
 /*http://www.omdbapi.com/?t=${searchTitle}&apikey=${OMDB_KEY}*/

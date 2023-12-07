@@ -10,6 +10,28 @@
 </head>
 <body>
 <div id="loading-message"></div>
+<nav>
+    <div id="movie-control">
+        <div id="movie-add" onclick="openModal()">
+            <h2>Add a movie</h2>
+        </div>
+    </div>
+</nav>
+<div class="modal" id="navModal">
+    <div class="modal-content">
+        <span onclick="closeModal()" style="cursor: pointer; float: right;">&times;</span>
+        <h2>Add a movie</h2>
+        <form name="addMovie">
+            <label for="new-movieTitle">Movie Title</label>
+            <input type="text" name="movieName" id="new-movieTitle">
+            <label for="new-movieRating">Movie rating</label>
+            <input type="text" name="movieTitle" id="new-movieRating">
+            <label for="new-movieSummary">Movie Summary</label>
+            <input type="text" name="movieSummary" id="new-movieSummary">
+            <input type="submit" value="submit" id="addMovieSubmit">
+        </form>
+    </div>
+</div>
 
 <div id="movieEdit"></div>
 
@@ -22,7 +44,6 @@
         <span class="close">&times;</span>
         <h2>Edit Movie</h2>
         <form name="editForm">
-
             <label for="movieId">ID:</label>
             <input type="text" name="movieId" id="movieId" disabled>
             <label for="editMovieTitle">Title:</label>
@@ -35,24 +56,6 @@
             <input type="submit" value="submit" id="editMovieSubmit">
         </form>
     </div>
-
-
-</div>
-
-<div id="movie-control">
-    <div id="movie-add">
-        <h2>Add a movie</h2>
-        <form name="">
-            <label for="new-movieTitle">Movie Title</label>
-            <input type="text" name="movieName" id="new-movieTitle">
-            <label for="new-movieRating">Movie rating</label>
-            <input type="text" name="movieTitle" id="new-movieRating">
-            <label for="new-movieSummary">Movie Summary</label>
-            <input type="text" name="movieSummary" id="new-movieSummary">
-            <input type="submit" value="submit" id="addMovieSubmit">
-        </form>
-    </div>
-
 </div>
 <script src="keys.js"></script>
 <script src="js/movies-application.js"></script>

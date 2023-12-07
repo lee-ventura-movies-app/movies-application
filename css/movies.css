@@ -3,17 +3,43 @@
     margin: 0;
     padding: 0;
 }
+/*Navbar*/
+nav {
+    background-color: #333;
+    padding: 10px;
+    text-align: center;
+}
 
+#movie-control {
+    display: inline-block;
+    margin-right: 20px;
+}
 
+#movie-add {
+    background-color: #42B5EA;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+}
+/*End Navbar*/
 #movie-list {
     display: flex;
     flex-flow: row wrap;
     justify-content: start;
     align-items: start;
-
-
 }
-
 
 #movieEdit {
     display: flex;
@@ -24,14 +50,10 @@
     height: max-content;
     width: max-content;
 
-    /* background-color: rgba(222, 212, 212, 0.55);
-     backdrop-filter: blur(10px);*/
-
     & div {
         background-color: teal;
         padding: 1em;
     }
-
 
     & form {
 
@@ -39,6 +61,7 @@
         flex-flow: column;
     }
 }
+/*Navbar end*/
 
 .movie-card {
     min-width: 200px;
@@ -112,6 +135,7 @@
         float: right;
         font-size: 28px;
         font-weight: bold;
+        cursor: pointer;
     }
 }
 
