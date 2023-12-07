@@ -16,10 +16,24 @@
     width: 15%;
     background-color: grey;
     margin: 1em;
+    position: relative;
 
     & img{
-        height: 100px;
         width: 100%;
 
+    }
+
+    .mv-details{
+        background-color: white;
+        display: none;
+        flex-flow: column;
+        position: absolute;
+        z-index: 1;
+
+    }
+    &:hover{
+        .mv-details{
+            display:flex;
+        }
     }
 }

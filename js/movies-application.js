@@ -1,7 +1,6 @@
 "use strict";
 
 
-
 // Loading message
 const loadingMessage = document.getElementById("loading-message");
 
@@ -100,10 +99,10 @@ document.querySelector("#edit-select").addEventListener("change", async (e) => {
     fetch("http://localhost:3000/movies/" + movieId)
         .then(resp => resp.json())
         .then(movie => {
-        document.querySelector("#editMovieTitle").value = movie.title;
-        document.querySelector("#editMovieRating").value = movie.rating;
-        document.querySelector("#editMovieSummary").value = movie.summary;
-    })
+            document.querySelector("#editMovieTitle").value = movie.title;
+            document.querySelector("#editMovieRating").value = movie.rating;
+            document.querySelector("#editMovieSummary").value = movie.summary;
+        })
         .catch(error => console.error('Error fetching movie details', error));
 
 });
@@ -135,30 +134,33 @@ document.forms.editForm.addEventListener("submit", async e => {
 */
 
 
-
-
-
-
-
 document.querySelector("#addMovieSubmit").addEventListener("click", (e) => {
     e.preventDefault();
-    alert("fff")
-    const newMovie = {
-        "title": document.querySelector("#new-movieTitle").value,
-        "rating": document.querySelector("#new-movieRating").value,
-        "summary": document.querySelector("#new-movieSummary").value,
-    }
-    createMovie(newMovie).then(() => fetch("http://localhost:3000/movies")).then(resp => resp.json()).then(data => console.log(data));
+    let searchTitle = prompt("Add a Movie")
+    fetch(`http://www.omdbapi.com/?t=${searchTitle}&apikey=${OMDB_KEY}`).then(resp => resp.json()).then(data => {
+        console.log(data)
+
+        const newMovie = {
+            "title": `${data.Title}`,
+            "rating": `${data.Ratings[0].Value}`,
+            "summary": `${data.Plot}`,
+            "poster": `${data.Poster}`,
+        }
+        createMovie(newMovie)
+        renderMovies()
+
+    })
 
 })
 
 /*Renders movie cards*/
 function renderMovies(movies) {
     document.querySelector("#movie-list").innerHTML = "";
+
     for (let movie of movies) {
         createMovieCard(movie)
     }
-    console.log("something happens")
+
 }
 
 
@@ -168,18 +170,33 @@ function createMovieCard(movie) {
     let title = movie.title;
     let rating = movie.rating;
     let summary = movie.summary;
+    let id = movie.id
+    let poster = movie.poster
 
     card.classList.add("movie-card")
     card.innerHTML = `
-    <img alt="" src="">
-    <h3>${title}</h3>
+    <img alt="" src=${poster}>
+    <div class="mv-details">
+     <h3>${title}</h3>
     <p>Rating: ${rating}</p>
     <p>${summary}</p>
+    <button>Edit</button>
+    </div>
+   
     `
+    card.lastElementChild.addEventListener('click', () => {
+        console.log(id)
+    })
+
 
     document.querySelector("#movie-list").append(card)
 }
 
-fetch("http://localhost:3000/movies").then(resp => resp.json()).then(data =>{ console.log(data);
-    renderMovies(data);}
+fetch("http://localhost:3000/movies").then(resp => resp.json()).then(data => {
+        console.log(data);
+        renderMovies(data);
+    }
 )
+
+
+/*http://www.omdbapi.com/?t=${searchTitle}&apikey=${OMDB_KEY}*/

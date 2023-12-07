@@ -29,6 +29,62 @@
       "rating": "4",
       "summary": "a summary",
       "id": 5
+    },
+    {
+      "title": "Saw",
+      "rating": "7.6/10",
+      "summary": "Two strangers awaken in a room with no recollection of how they got there, and soon discover they're pawns in a deadly game perpetrated by a notorious serial killer.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BM2M1MzI1MWYtYmM2ZC00OWY3LTk0ZGMtNmRkNzU1NzEzMWE5XkEyXkFqcGdeQXVyODUwOTkwODk@._V1_SX300.jpg",
+      "id": 6
+    },
+    {
+      "title": "Up",
+      "rating": "8.3/10",
+      "summary": "78-year-old Carl Fredricksen travels to Paradise Falls in his house equipped with balloons, inadvertently taking a young stowaway.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BYjBkM2RjMzItM2M3Ni00N2NjLWE3NzMtMGY4MzE4MDAzMTRiXkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_SX300.jpg",
+      "id": 7
+    },
+    {
+      "title": "Step Up 2: The Streets",
+      "rating": "6.2/10",
+      "summary": "Romantic sparks occur between two dance students from different backgrounds at the Maryland School of the Arts.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BODI2MTllYzMtNjA0Yi00MzNkLTg1MWItMWRhZTI3YTVjZjMyXkEyXkFqcGdeQXVyMTA3MzQ4MTc0._V1_SX300.jpg",
+      "id": 8
+    },
+    {
+      "title": "Null",
+      "rating": "7.4/10",
+      "summary": "The character in this surrealist short film takes a medicine called \"Null\" that has very existential adverse effects.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMjA0OTAzODY2MF5BMl5BanBnXkFtZTcwNjA2NzMzMg@@._V1_SX300.jpg",
+      "id": 9
+    },
+    {
+      "title": "Solitary",
+      "rating": "3.5/10",
+      "summary": "'Solitary' is a contained sci-fi film about a man who wakes up inside a room to discover he's a prisoner sent into space to form Earth's first colony, and worse - his cell mate Alana is hell bent on destroying everything.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMWRjMDllMDgtYzI3Yi00YThhLTlhN2MtYzQ0YzgzNzQxYzU0XkEyXkFqcGdeQXVyMjU5OTAzMzI@._V1_SX300.jpg",
+      "id": 10
+    },
+    {
+      "title": "Archive",
+      "rating": "6.4/10",
+      "summary": "2038: George Almore is working on a true human-equivalent AI. His latest prototype is almost ready. This sensitive phase is also the riskiest. Especially as he has a goal that must be hidden at all costs.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMzFkNTRiMzYtODM2MS00YWQ2LThkNTUtMDE1Y2E2YjAwYTUxXkEyXkFqcGdeQXVyMzQwMTY2Nzk@._V1_SX300.jpg",
+      "id": 11
+    },
+    {
+      "title": "Monsters",
+      "rating": "6.4/10",
+      "summary": "Six years after Earth has suffered an alien invasion, a cynical journalist agrees to escort a shaken American tourist through an infected zone in Mexico to the safety of the U.S. border.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMjE4MzMyNjExMl5BMl5BanBnXkFtZTcwMzI5NjM3Mw@@._V1_SX300.jpg",
+      "id": 12
+    },
+    {
+      "title": "Madhouse",
+      "rating": "5.4/10",
+      "summary": "A young psychiatric intern unearths secrets about the mental health facility in which he works.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNjUzNjA2ZWMtNmVhYi00YzY0LTk0ZTMtODNiM2JlNTg4OGMxXkEyXkFqcGdeQXVyNjU0NTI0Nw@@._V1_SX300.jpg",
+      "id": 13
     }
   ]
 }
