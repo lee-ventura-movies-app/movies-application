@@ -158,13 +158,17 @@ function createMovieCard(movie) {
     <p>Rating: ${rating}</p>
     <p>${summary}</p>
     <button>Edit</button>
+    <button>Delete</button>
     </div>
-   
     `
-    card.lastElementChild.addEventListener('click', () => {
+
+    card.lastElementChild.children[3].addEventListener('click', () => {
         console.log(id)
     })
-
+    card.lastElementChild.children[4].addEventListener('click', () => {
+        console.log(id)
+        fetch(`http://localhost:3000/movies/${id}`, {method: "DELETE"});
+    })
 
     document.querySelector("#movie-list").append(card)
 }
