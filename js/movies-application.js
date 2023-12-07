@@ -1,4 +1,5 @@
 "use strict";
+(()=>{
 
 // Function to fetch movies, handle loading, and display movie list
 function fetchMoviesAndHandleLoading() {
@@ -96,18 +97,6 @@ const editMovie = async (id, movie) => {
     }
 }
 
-/*document.querySelector("#edit-select").addEventListener("change", async (e) => {
-    const movieId = e.target.value;
-    fetch("http://localhost:3000/movies/" + movieId)
-        .then(resp => resp.json())
-        .then(movie => {
-            document.querySelector("#editMovieTitle").value = movie.title;
-            document.querySelector("#editMovieRating").value = movie.rating;
-            document.querySelector("#editMovieSummary").value = movie.summary;
-        })
-        .catch(error => console.error('Error fetching movie details', error));
-
-});*/
 document.forms.editForm.addEventListener("submit", async e => {
     e.preventDefault();
     const movieID = document.querySelector("#movieId").value;
@@ -183,6 +172,16 @@ document.forms.addMovieManual.addEventListener('submit', (e)=>{
 
 })
 
+/*function filterSort(){
+    let getMovies = fetch("http://localhost:3000/movies").then(response => response.json())
+    let filteredMovies = []
+
+
+
+
+}*/
+
+
 /*Renders movie cards*/
 function renderMovies(movies) {
     document.querySelector("#movie-list").innerHTML = "";
@@ -236,23 +235,11 @@ function createMovieCard(movie) {
     document.querySelector("#movie-list").append(card)
 }
 
-/*fetch("http://localhost:3000/movies").then(resp => resp.json()).then(data => {
-        console.log(data);
-        renderMovies(data);
-    }
-)*/
-
 // Get the modal
-var modal = document.getElementById("myModal");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
+let modal = document.getElementById("myModal");
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function () {
-    modal.style.display = "none";
-}
+    document.getElementsByClassName("close")[0].onclick = function () {modal.style.display = "none";}
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
@@ -263,6 +250,10 @@ window.onclick = function (event) {
     }
 };
 // Navbar Modal
+
+
+
+    document.querySelector("#movie-control").addEventListener('click', openModal)
 function openModal() {
     document.getElementById("navModal").style.display = "flex";
 }
@@ -271,4 +262,5 @@ function closeModal() {
 }
 // End NavBar Modal
 
-/*http://www.omdbapi.com/?t=${searchTitle}&apikey=${OMDB_KEY}*/
+
+})()
