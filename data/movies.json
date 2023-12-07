@@ -79,6 +79,30 @@
       "poster": "https://m.media-amazon.com/images/M/MV5BZTU3MTU5OGEtZDllMS00ZTBjLTk3ZGItZWUzMDMyM2Y4YTgzXkEyXkFqcGdeQXVyMTA0MTM5NjI2._V1_SX300.jpg",
       "genre": "Action, Drama, Western",
       "id": 30
+    },
+    {
+      "title": "Null",
+      "rating": "7.4/10",
+      "summary": "The character in this surrealist short film takes a medicine called \"Null\" that has very existential adverse effects.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMjA0OTAzODY2MF5BMl5BanBnXkFtZTcwNjA2NzMzMg@@._V1_SX300.jpg",
+      "genre": "Short, Horror",
+      "id": 31
+    },
+    {
+      "title": "Solitary",
+      "rating": "1.75",
+      "summary": "'Solitary' is a contained sci-fi film about a man who wakes up inside a room to discover he's a prisoner sent into space to form Earth's first colony, and worse - his cell mate Alana is hell bent on destroying everything.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMWRjMDllMDgtYzI3Yi00YThhLTlhN2MtYzQ0YzgzNzQxYzU0XkEyXkFqcGdeQXVyMjU5OTAzMzI@._V1_SX300.jpg",
+      "genre": "Drama, Sci-Fi, Thriller",
+      "id": 32
+    },
+    {
+      "title": "thehunters",
+      "rating": "1.5",
+      "summary": "something",
+      "poster": "undefined",
+      "genre": "Action,adventure",
+      "id": 33
     }
   ]
 }

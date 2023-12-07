@@ -26,14 +26,24 @@
         <span onclick="closeModal()" style="cursor: pointer; float: right;">&times;</span>
         <h2>Add a movie</h2>
         <form name="addMovie">
-            <label for="new-movieTitle">Movie Title</label>
-            <input type="text" name="movieName" id="new-movieTitle">
-            <label for="new-movieRating">Movie rating</label>
-            <input type="text" name="movieTitle" id="new-movieRating">
-            <label for="new-movieSummary">Movie Summary</label>
-            <input type="text" name="movieSummary" id="new-movieSummary">
+            <label for="addMovieAuto">Movie Title</label>
+            <input type="text" id="addMovieAuto">
             <input type="submit" value="submit" id="addMovieSubmit">
         </form>
+        <h2>Add Movie Manually</h2>
+        <form name="addMovieManual">
+            <label for="newMovieTitle">Movie Title</label>
+            <input type="text" name="movieName" id="newMovieTitle">
+            <label for="newMovieRating">Movie rating</label>
+            <input type="text" name="newMovieRating" id="newMovieRating">
+            <label for="newMovieGenre">Movie Genre</label>
+            <input type="text" name="newMovieGenre" id="newMovieGenre">
+            <label for="newMovieSummary">Movie Summary</label>
+            <input type="text" name="movieSummary" id="newMovieSummary">
+            <input type="submit" value="submit" id="addMovieSubmitManual">
+        </form>
+
+
     </div>
 </div>
 

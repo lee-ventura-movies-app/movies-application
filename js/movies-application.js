@@ -128,17 +128,20 @@ document.forms.editForm.addEventListener("submit", async e => {
 
 document.querySelector("#addMovieSubmit").addEventListener("click", (e) => {
     e.preventDefault();
-    let searchTitle = prompt("Add a Movie")
+    let searchTitle = document.querySelector("#addMovieAuto").value
+    console.log(searchTitle)
     fetch(`http://www.omdbapi.com/?t=${searchTitle}&apikey=${OMDB_KEY}`).then(resp => resp.json()).then(data => {
         console.log(data)
         const newMovie = {
             "title": `${data.Title}`,
-            "rating": `${data.Ratings[0].Value}`,
+            "rating": `${ parseFloat(data.imdbRating)/2 }`,
             "summary": `${data.Plot}`,
             "poster": `${data.Poster}`,
             "genre": `${data.Genre}`
         }
+        console.log(newMovie)
         createMovie(newMovie)
+        document.querySelector("#addMovieAuto").value = "";
     }).then(r => {
         fetch("http://localhost:3000/movies")
             .then(response => response.json())
@@ -147,6 +150,37 @@ document.querySelector("#addMovieSubmit").addEventListener("click", (e) => {
                 renderMovies(data)
             })
     })
+})
+document.forms.addMovieManual.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    let title = document.querySelector('#newMovieTitle').value
+    let rating = document.querySelector('#newMovieRating').value
+    let summary = document.querySelector('#newMovieSummary').value
+    let genre = document.querySelector('#newMovieGenre').value
+    fetch(`http://www.omdbapi.com/?t=${title}&apikey=${OMDB_KEY}`).then(resp => resp.json()).then(data => {
+        console.log(data)
+        const newMovie = {
+            "title": `${title}`,
+            "rating": `${rating}`,
+            "summary": `${summary}`,
+            "poster": `${data.Poster}`,
+            "genre": `${genre}`
+        }
+
+        createMovie(newMovie)
+        document.querySelector('#newMovieTitle').value = "";
+        document.querySelector('#newMovieRating').value = "";
+        document.querySelector('#newMovieSummary').value = "";
+        document.querySelector('#newMovieGenre').value = "";
+    }).then(r => {
+        fetch("http://localhost:3000/movies")
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                renderMovies(data)
+            })
+    })
+
 })
 
 /*Renders movie cards*/
