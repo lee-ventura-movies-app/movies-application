@@ -70,7 +70,7 @@ const editMovie = async (id, movie) => {
     }
 }
 
-document.querySelector("#edit-select").addEventListener("change", async (e) => {
+/*document.querySelector("#edit-select").addEventListener("change", async (e) => {
     const movieId = e.target.value;
     fetch("http://localhost:3000/movies/" + movieId)
         .then(resp => resp.json())
@@ -81,15 +81,21 @@ document.querySelector("#edit-select").addEventListener("change", async (e) => {
         })
         .catch(error => console.error('Error fetching movie details', error));
 
-});
+});*/
 document.forms.editForm.addEventListener("submit", async e => {
     e.preventDefault();
-    const movieID = document.querySelector("#edit-select").value;
+    const movieID = document.querySelector("#movieId").value;
     const title = document.querySelector("#editMovieTitle").value;
     const rating = document.querySelector("#editMovieRating").value;
     const summary = document.querySelector("#editMovieSummary").value;
-    editMovie(movieID, {title, rating, summary});
+    await editMovie(movieID, {title, rating, summary});
 
+    fetch("http://localhost:3000/movies")
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            renderMovies(data)
+        })
     /*Render movie function*/
 });
 
@@ -157,27 +163,62 @@ function createMovieCard(movie) {
      <h3>${title}</h3>
     <p>Rating: ${rating}</p>
     <p>${summary}</p>
-    <button>Edit</button>
+    <button id="myBtn">Edit</button>
     <button>Delete</button>
     </div>
     `
 
-    card.lastElementChild.children[3].addEventListener('click', () => {
-        console.log(id)
+    card.lastElementChild.children[3].addEventListener('click', (e) => {
+        let modal = document.querySelector("#myModal")
+        modal.style.display = "block";
+
+        document.querySelector("#editMovieTitle").value = title;
+        document.querySelector("#editMovieRating").value = rating;
+        document.querySelector("#editMovieSummary").value = summary;
+        document.querySelector("#movieId").value = id;
     })
     card.lastElementChild.children[4].addEventListener('click', () => {
-        console.log(id)
-        fetch(`http://localhost:3000/movies/${id}`, {method: "DELETE"});
+        fetch(`http://localhost:3000/movies/${id}`, {method: "DELETE"}).then(r => {
+            fetch("http://localhost:3000/movies")
+                .then(response => response.json())
+                .then(data => {
+                    renderMovies(data)
+                })
+        })
     })
 
     document.querySelector("#movie-list").append(card)
 }
 
-fetch("http://localhost:3000/movies").then(resp => resp.json()).then(data => {
+/*fetch("http://localhost:3000/movies").then(resp => resp.json()).then(data => {
         console.log(data);
         renderMovies(data);
     }
-)
+)*/
 
+// Get the modal
+var modal = document.getElementById("myModal");
 
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+btn.onclick = function () {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function () {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
+}
 /*http://www.omdbapi.com/?t=${searchTitle}&apikey=${OMDB_KEY}*/

@@ -9,37 +9,52 @@
     <link rel="stylesheet" href="css/movies.css">
 </head>
 <body>
-    <div id="loading-message"></div>
-    <div id="movie-list"></div>
-    <div id="movie-control">
-        <div id="movie-add">
-            <h2>Add a movie</h2>
-            <form name="">
-                <label for="new-movieTitle">Movie Title</label>
-                <input type="text" name="movieName" id="new-movieTitle">
-                <label for="new-movieRating">Movie rating</label>
-                <input type="text" name="movieTitle" id="new-movieRating">
-                <label for="new-movieSummary">Movie Summary</label>
-                <input type="text" name="movieSummary" id="new-movieSummary">
-                <input type="submit" value="submit" id="addMovieSubmit">
-            </form>
-        </div>
-        <div id="movieEdit">
-            <h2>Edit Movie</h2>
-            <form name="editForm">
-                <label for="edit-select">Dropdown</label>
-                <select id="edit-select"></select>
-                <label for="editMovieTitle">Movie Title</label>
-                <input type="text" name="movieTitle" id="editMovieTitle">
-                <label for="editMovieRating">Movie Rating</label>
-                <input type="text" name="movieRating" id="editMovieRating">
-                <label for="editMovieSummary">Movie Summary</label>
-                <input type="text" name="movieSummary" id="editMovieSummary">
-                <input type="submit" value="submit" id="editMovieSubmit">
-            </form>
-        </div>
+<div id="loading-message"></div>
+
+<div id="movieEdit"></div>
+
+<div id="movie-list"></div>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Edit Movie</h2>
+        <form name="editForm">
+
+            <label for="movieId">ID:</label>
+            <input type="text" name="movieId" id="movieId" disabled>
+            <label for="editMovieTitle">Title:</label>
+            <input type="text" name="movieTitle" id="editMovieTitle">
+            <label for="editMovieRating">Rating:</label>
+            <input type="text" name="movieRating" id="editMovieRating">
+            <label for="editMovieSummary">Summary:</label>
+<!--            <input type="text" name="movieSummary" id="editMovieSummary">-->
+            <textarea name="movieSummary" id="editMovieSummary"></textarea>
+            <input type="submit" value="submit" id="editMovieSubmit">
+        </form>
     </div>
-    <script src="keys.js"></script>
-    <script src="js/movies-application.js"></script>
+
+
+</div>
+
+<div id="movie-control">
+    <div id="movie-add">
+        <h2>Add a movie</h2>
+        <form name="">
+            <label for="new-movieTitle">Movie Title</label>
+            <input type="text" name="movieName" id="new-movieTitle">
+            <label for="new-movieRating">Movie rating</label>
+            <input type="text" name="movieTitle" id="new-movieRating">
+            <label for="new-movieSummary">Movie Summary</label>
+            <input type="text" name="movieSummary" id="new-movieSummary">
+            <input type="submit" value="submit" id="addMovieSubmit">
+        </form>
+    </div>
+
+</div>
+<script src="keys.js"></script>
+<script src="js/movies-application.js"></script>
 </body>
 </html>
