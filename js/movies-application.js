@@ -1,12 +1,9 @@
 "use strict";
 
-
-// Loading message
-const loadingMessage = document.getElementById("loading-message");
-
 // Function to fetch movies, handle loading, and display movie list
 function fetchMoviesAndHandleLoading() {
-    showLoadingMessage(loadingMessage);
+    const loadingMessage = document.getElementById("loading-message")
+    showLoadingMessage(loadingMessage)
     // Fetch from movies.json
     fetch("http://localhost:3000/movies")
         .then(response => response.json())
@@ -32,31 +29,11 @@ function hideLoadingMessage(element) {
     element.style.display = "none";
 }
 
-// Function to display movies in the movie-list element
-function displayMovies(data) {
-    console.log(data)
-    const movieList = document.getElementById('movie-list');
-    let result = `<h2> Movies I've watched! </h2>`;
-    data.forEach((movie) => {
-        const {id, title, rating} = movie;
-        result += `
-                <div>
-                    <h5> Movie ID: ${id} </h5>
-                    <ul>
-                        <li>Movie title: ${title}</li>
-                        <li>Movie rating: ${rating}</li>
-                    </ul>
-                </div>`;
-    });
-    movieList.innerHTML = result;
-}
-
 // Fetch error
 function handleFetchError(error) {
     console.error('Error fetching movies:', error);
     document.getElementById('movie-list').innerHTML = 'Error loading movies. Please try again later.';
 }
-
 
 const createMovie = async (movie) => {
     try {
@@ -92,7 +69,6 @@ const editMovie = async (id, movie) => {
         console.error(error);
     }
 }
-
 
 document.querySelector("#edit-select").addEventListener("change", async (e) => {
     const movieId = e.target.value;
@@ -139,7 +115,6 @@ document.querySelector("#addMovieSubmit").addEventListener("click", (e) => {
     let searchTitle = prompt("Add a Movie")
     fetch(`http://www.omdbapi.com/?t=${searchTitle}&apikey=${OMDB_KEY}`).then(resp => resp.json()).then(data => {
         console.log(data)
-
         const newMovie = {
             "title": `${data.Title}`,
             "rating": `${data.Ratings[0].Value}`,
@@ -147,20 +122,22 @@ document.querySelector("#addMovieSubmit").addEventListener("click", (e) => {
             "poster": `${data.Poster}`,
         }
         createMovie(newMovie)
-        renderMovies()
-
+    }).then(r => {
+        fetch("http://localhost:3000/movies")
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                renderMovies(data)
+            })
     })
-
 })
 
 /*Renders movie cards*/
 function renderMovies(movies) {
     document.querySelector("#movie-list").innerHTML = "";
-
     for (let movie of movies) {
         createMovieCard(movie)
     }
-
 }
 
 

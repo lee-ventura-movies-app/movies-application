@@ -1,36 +1,6 @@
 {
   "movies": [
     {
-      "id": 1,
-      "title": "Shrek",
-      "rating": 5,
-      "summary": ""
-    },
-    {
-      "title": "Garfield at Large",
-      "rating": 5,
-      "summary": "something",
-      "id": 2
-    },
-    {
-      "title": "Garfield at Large",
-      "rating": 5,
-      "summary": "something",
-      "id": 3
-    },
-    {
-      "title": "",
-      "rating": "",
-      "summary": "",
-      "id": 4
-    },
-    {
-      "title": "new movie",
-      "rating": "4",
-      "summary": "a summary",
-      "id": 5
-    },
-    {
       "title": "Saw",
       "rating": "7.6/10",
       "summary": "Two strangers awaken in a room with no recollection of how they got there, and soon discover they're pawns in a deadly game perpetrated by a notorious serial killer.",
@@ -85,6 +55,13 @@
       "summary": "A young psychiatric intern unearths secrets about the mental health facility in which he works.",
       "poster": "https://m.media-amazon.com/images/M/MV5BNjUzNjA2ZWMtNmVhYi00YzY0LTk0ZTMtODNiM2JlNTg4OGMxXkEyXkFqcGdeQXVyNjU0NTI0Nw@@._V1_SX300.jpg",
       "id": 13
+    },
+    {
+      "title": "Shrek",
+      "rating": "7.9/10",
+      "summary": "A mean lord exiles fairytale creatures to the swamp of a grumpy ogre, who must go on a quest and rescue a princess for the lord in order to get his land back.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BOGZhM2FhNTItODAzNi00YjA0LWEyN2UtNjJlYWQzYzU1MDg5L2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
+      "id": 14
     }
   ]
 }
