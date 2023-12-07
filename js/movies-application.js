@@ -88,7 +88,8 @@ document.forms.editForm.addEventListener("submit", async e => {
     const title = document.querySelector("#editMovieTitle").value;
     const rating = document.querySelector("#editMovieRating").value;
     const summary = document.querySelector("#editMovieSummary").value;
-    await editMovie(movieID, {title, rating, summary});
+    const genre = document.querySelector("#editMovieGenre").value;
+    await editMovie(movieID, {title, rating, summary, genre});
 
     fetch("http://localhost:3000/movies")
         .then(response => response.json())
@@ -109,6 +110,7 @@ document.querySelector("#addMovieSubmit").addEventListener("click", (e) => {
             "rating": `${data.Ratings[0].Value}`,
             "summary": `${data.Plot}`,
             "poster": `${data.Poster}`,
+            "genre": `${data.Genre}`
         }
         createMovie(newMovie)
     }).then(r => {
@@ -129,15 +131,15 @@ function renderMovies(movies) {
     }
 }
 
-
 /*Creates a new movie card*/
 function createMovieCard(movie) {
     let card = document.createElement("div");
     let title = movie.title;
     let rating = movie.rating;
     let summary = movie.summary;
-    let id = movie.id
-    let poster = movie.poster
+    let id = movie.id;
+    let poster = movie.poster;
+    let genre = movie.genre;
 
     card.classList.add("movie-card")
     card.innerHTML = `
@@ -145,22 +147,24 @@ function createMovieCard(movie) {
     <div class="mv-details">
      <h3>${title}</h3>
     <p>Rating: ${rating}</p>
+    <p>${genre}</p>
     <p>${summary}</p>
     <button id="myBtn">Edit</button>
     <button>Delete</button>
     </div>
     `
 
-    card.lastElementChild.children[3].addEventListener('click', (e) => {
+    card.lastElementChild.children[4].addEventListener('click', (e) => {
         let modal = document.querySelector("#myModal")
         modal.style.display = "block";
 
         document.querySelector("#editMovieTitle").value = title;
         document.querySelector("#editMovieRating").value = rating;
+        document.querySelector("#editMovieGenre").value = genre;
         document.querySelector("#editMovieSummary").value = summary;
         document.querySelector("#movieId").value = id;
     })
-    card.lastElementChild.children[4].addEventListener('click', () => {
+    card.lastElementChild.children[5].addEventListener('click', () => {
         fetch(`http://localhost:3000/movies/${id}`, {method: "DELETE"}).then(r => {
             fetch("http://localhost:3000/movies")
                 .then(response => response.json())
@@ -169,7 +173,6 @@ function createMovieCard(movie) {
                 })
         })
     })
-
     document.querySelector("#movie-list").append(card)
 }
 

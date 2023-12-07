@@ -1,53 +1,44 @@
 {
   "movies": [
     {
+      "title": "Finding Nemo",
+      "rating": "8.2/10",
+      "summary": "After his son is captured in the Great Barrier Reef and taken to Sydney, a timid clownfish sets out on a journey to bring him home.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BZmYxZjg3OWEtNzg5Yi00M2YzLWI1YzYtYTQ0NTgwNzhjN2E1XkEyXkFqcGdeQXVyNDUyOTg3Njg@._V1_SX300.jpg",
+      "genre": "Animation, Adventure, Comedy",
+      "id": 17
+    },
+    {
       "title": "Shrek",
       "rating": "7.9/10",
       "summary": "A mean lord exiles fairytale creatures to the swamp of a grumpy ogre, who must go on a quest and rescue a princess for the lord in order to get his land back.",
       "poster": "https://m.media-amazon.com/images/M/MV5BOGZhM2FhNTItODAzNi00YjA0LWEyN2UtNjJlYWQzYzU1MDg5L2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
-      "id": 1
-    },
-    {
-      "title": "The Grudge",
-      "rating": "5.9/10",
-      "summary": "An American nurse living and working in Tokyo is exposed to a mysterious supernatural curse, one that locks a person in a powerful rage before claiming their life and spreading to another victim.",
-      "poster": "https://m.media-amazon.com/images/M/MV5BMjIxODg1Nzc3NF5BMl5BanBnXkFtZTcwMjM0MjEzMw@@._V1_SX300.jpg",
-      "id": 2
-    },
-    {
-      "title": "Iron Man",
-      "rating": "7.9/10",
-      "summary": "After being held captive in an Afghan cave, billionaire engineer Tony Stark creates a unique weaponized suit of armor to fight evil.",
-      "poster": "https://m.media-amazon.com/images/M/MV5BMTczNTI2ODUwOF5BMl5BanBnXkFtZTcwMTU0NTIzMw@@._V1_SX300.jpg",
-      "id": 4
-    },
-    {
-      "title": "Lilo & Stitch",
-      "rating": "7.3/10",
-      "summary": "A young and parentless girl adopts a 'dog' from the local pound, completely unaware that it's supposedly a dangerous scientific experiment that's taken refuge on Earth and is now hiding from its creator and those who see it as a m...",
-      "poster": "https://m.media-amazon.com/images/M/MV5BYTY5MGE4MjEtNTMzYy00ODAxLWFiNDQtNzhlOGJiZWIzNDhkXkEyXkFqcGdeQXVyNTM5NzI0NDY@._V1_SX300.jpg",
-      "id": 12
+      "genre": "Animation, Adventure, Comedy",
+      "id": 18
     },
     {
       "title": "The Ring",
       "rating": "7.1/10",
       "summary": "A journalist must investigate a mysterious videotape which seems to cause the death of anyone one week to the day after they view it.",
       "poster": "https://m.media-amazon.com/images/M/MV5BNDA2NTg2NjE4Ml5BMl5BanBnXkFtZTYwMjYxMDg5._V1_SX300.jpg",
-      "id": 14
-    },
-    {
-      "title": "Se7en",
-      "rating": "8.6/10",
-      "summary": "Two detectives, a rookie and a veteran, hunt a serial killer who uses the seven deadly sins as his motives.",
-      "poster": "https://m.media-amazon.com/images/M/MV5BOTUwODM5MTctZjczMi00OTk4LTg3NWUtNmVhMTAzNTNjYjcyXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg",
-      "id": 15
+      "genre": "Horror, Mystery",
+      "id": 19
     },
     {
       "title": "Spirited Away",
       "rating": "8.6/10",
       "summary": "During her family's move to the suburbs, a sullen 10-year-old girl wanders into a world ruled by gods, witches and spirits, a world where humans are changed into beasts.",
       "poster": "https://m.media-amazon.com/images/M/MV5BMjlmZmI5MDctNDE2YS00YWE0LWE5ZWItZDBhYWQ0NTcxNWRhXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg",
-      "id": 16
+      "genre": "Animation, Adventure, Family",
+      "id": 20
+    },
+    {
+      "title": "Lilo & Stitch",
+      "rating": "7.3/10",
+      "summary": "A young and parentless girl adopts a 'dog' from the local pound, completely unaware that it's supposedly a dangerous scientific experiment that's taken refuge on Earth and is now hiding from its creator and those who see it as a m...",
+      "poster": "https://m.media-amazon.com/images/M/MV5BYTY5MGE4MjEtNTMzYy00ODAxLWFiNDQtNzhlOGJiZWIzNDhkXkEyXkFqcGdeQXVyNTM5NzI0NDY@._V1_SX300.jpg",
+      "genre": "Animation, Adventure, Comedy",
+      "id": 21
     }
   ]
 }
