@@ -35,6 +35,32 @@ function handleFetchError(error) {
     document.getElementById('movie-list').innerHTML = 'Error loading movies. Please try again later.';
 }
 
+function sortMovies() {
+    fetch("http://localhost:3000/movies")
+        .then(response => response.json())
+        .then(data => {
+            if (Array.isArray(data)) {
+                const movies = data;
+                movies.sort((a, b) => {
+                    const titleA = a.title.toUpperCase();
+                    const titleB = b.title.toUpperCase();
+
+                    if (titleA < titleB) return -1;
+                    if (titleA > titleB) return 1;
+                    return 0;
+                });
+                renderMovies(movies);
+            }else {
+                console.error('Invalid data structure from the server:', data);
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching movies:', error);
+        });
+}
+
+
+
 const createMovie = async (movie) => {
     try {
         const url = 'http://localhost:3000/movies';

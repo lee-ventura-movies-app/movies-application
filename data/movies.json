@@ -33,12 +33,52 @@
       "id": 20
     },
     {
-      "title": "Lilo & Stitch",
-      "rating": "7.3/10",
-      "summary": "A young and parentless girl adopts a 'dog' from the local pound, completely unaware that it's supposedly a dangerous scientific experiment that's taken refuge on Earth and is now hiding from its creator and those who see it as a m...",
-      "poster": "https://m.media-amazon.com/images/M/MV5BYTY5MGE4MjEtNTMzYy00ODAxLWFiNDQtNzhlOGJiZWIzNDhkXkEyXkFqcGdeQXVyNTM5NzI0NDY@._V1_SX300.jpg",
-      "genre": "Animation, Adventure, Comedy",
-      "id": 21
+      "title": "Se7en",
+      "rating": "8.6/10",
+      "summary": "Two detectives, a rookie and a veteran, hunt a serial killer who uses the seven deadly sins as his motives.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BOTUwODM5MTctZjczMi00OTk4LTg3NWUtNmVhMTAzNTNjYjcyXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg",
+      "genre": "Crime, Drama, Mystery",
+      "id": 22
+    },
+    {
+      "title": "The Green Hornet",
+      "rating": "5.8/10",
+      "summary": "Following the death of his father, Britt Reid, heir to his father's large company, teams up with his late dad's assistant Kato to become a masked crime fighting team.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMTcwOTMwMDYyMl5BMl5BanBnXkFtZTcwMzAxMjMyNA@@._V1_SX300.jpg",
+      "genre": "Action, Comedy, Crime",
+      "id": 26
+    },
+    {
+      "title": "The Maze Runner",
+      "rating": "6.8/10",
+      "summary": "Thomas is deposited in a community of boys after his memory is erased, soon learning they're all trapped in a maze that will require him to join forces with fellow \"runners\" for a shot at escape.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMjUyNTA3MTAyM15BMl5BanBnXkFtZTgwOTEyMTkyMjE@._V1_SX300.jpg",
+      "genre": "Action, Mystery, Sci-Fi",
+      "id": 27
+    },
+    {
+      "title": "Iron Man",
+      "rating": "7.9/10",
+      "summary": "After being held captive in an Afghan cave, billionaire engineer Tony Stark creates a unique weaponized suit of armor to fight evil.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMTczNTI2ODUwOF5BMl5BanBnXkFtZTcwMTU0NTIzMw@@._V1_SX300.jpg",
+      "genre": "Action, Adventure, Sci-Fi",
+      "id": 28
+    },
+    {
+      "title": "Deadpool",
+      "rating": "8.0/10",
+      "summary": "A wisecracking mercenary gets experimented on and becomes immortal yet hideously scarred, and sets out to track down the man who ruined his looks.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BYzE5MjY1ZDgtMTkyNC00MTMyLThhMjAtZGI5OTE1NzFlZGJjXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg",
+      "genre": "Action, Comedy",
+      "id": 29
+    },
+    {
+      "title": "Django",
+      "rating": "7.2/10",
+      "summary": "A coffin-dragging gunslinger and a prostitute become embroiled in a bitter feud between a Klan of Southern racists and a band of Mexican Revolutionaries.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BZTU3MTU5OGEtZDllMS00ZTBjLTk3ZGItZWUzMDMyM2Y4YTgzXkEyXkFqcGdeQXVyMTA0MTM5NjI2._V1_SX300.jpg",
+      "genre": "Action, Drama, Western",
+      "id": 30
     }
   ]
 }
