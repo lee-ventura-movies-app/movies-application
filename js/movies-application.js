@@ -1,5 +1,7 @@
 "use strict";
 (() => {
+    const getMovies = fetch("http://localhost:3000/movies").then(response => response.json())
+
 
 // Function to fetch movies, handle loading, and display movie list
     function fetchMoviesAndHandleLoading() {
@@ -110,35 +112,15 @@
             .then(data => {
                 console.log(data)
                 renderMovies(data)
+
             })
-        /*Render movie function*/
+
+        document.querySelector('#editModal').style.display = "none"
     });
 
-    document.querySelector("#addMovieSubmit").addEventListener("click", (e) => {
+    document.forms.addMovie.addEventListener("submit", (e) => {
         e.preventDefault();
-        makeNewMovie(e)
-
-    })
-    document.forms.addMovieManual.addEventListener('submit', (e) => {
-        e.preventDefault();
-        let movieInfo = {
-            title: document.querySelector('#newMovieTitle').value,
-            rating: document.querySelector('#newMovieRating').value,
-            summary: document.querySelector('#newMovieSummary').value,
-            genre: document.querySelector('#newMovieGenre').value,
-        }
-        makeNewMovie(e, movieInfo)
-    })
-
-    function makeNewMovie(e, movieInfo) {
-        console.log(movieInfo)
-        let searchTitle;
-        if (document.querySelector("#addMovieAuto").value.trim() !== "") {
-            console.log(typeof document.querySelector("#addMovieAuto").value)
-            searchTitle = document.querySelector("#addMovieAuto").value
-        }   else {searchTitle = movieInfo.title}
-        console.log(searchTitle)
-
+        let searchTitle = document.querySelector("#addMovieAuto").value
         fetch(`http://www.omdbapi.com/?t=${searchTitle}&apikey=${OMDB_KEY}`).then(resp => resp.json()).then(data => {
             let newMovie = {}
             console.log(data)
@@ -150,14 +132,6 @@
                     "poster": `${data.Poster}`,
                     "genre": `${data.Genre}`
                 }
-            } else {
-                newMovie = {
-                    "title": `${movieInfo.title}`,
-                    "rating": `${movieInfo.rating}`,
-                    "summary": `${movieInfo.summary}`,
-                    "poster": `${data.Poster}`,
-                    "genre": `${movieInfo.genre}`
-                }
             }
             console.log(newMovie)
             createMovie(newMovie)
@@ -167,11 +141,41 @@
                 .then(response => response.json())
                 .then(data => {
                     console.log(data)
-                    renderMovies(data)
+                    setTimeout(()=>{renderMovies(data)}, 500)
+
                 })
         })
 
-    }
+    })
+
+    document.forms.addMovieManual.addEventListener('submit', (e) => {
+        e.preventDefault();
+        let searchTitle = document.querySelector('#newMovieTitle').value
+        fetch(`http://www.omdbapi.com/?t=${searchTitle}&apikey=${OMDB_KEY}`).then(resp => resp.json()).then(data => {
+            let newMovie = {
+                "title": `${document.querySelector('#newMovieTitle').value}`,
+                "rating": `${document.querySelector('#newMovieRating').value}`,
+                "summary": `${document.querySelector('#newMovieSummary').value}`,
+                "poster": `${data.Poster}`,
+                "genre": `${document.querySelector('#newMovieGenre').value}`
+            }
+            createMovie(newMovie)
+        })
+            .then(r => {
+                fetch("http://localhost:3000/movies")
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data)
+                        renderMovies(data)
+                    })
+
+                document.querySelector('#newMovieTitle').value = "";
+                document.querySelector('#newMovieRating').value = "";
+                document.querySelector('#newMovieSummary').value = "";
+                document.querySelector('#newMovieGenre').value = "";
+                document.querySelector("#addMovieMsg").innerText = "Added New Movie";
+            })
+    })
 
     /*function filterSort(){
         let getMovies = fetch("http://localhost:3000/movies").then(response => response.json())
@@ -181,7 +185,6 @@
 
 
     }*/
-
 
     /*Renders movie cards*/
     function renderMovies(movies) {
@@ -221,7 +224,7 @@
         `
 
         card.lastElementChild.lastElementChild.previousElementSibling.addEventListener('click', (e) => {
-            let modal = document.querySelector("#myModal")
+            let modal = document.querySelector("#editModal")
             modal.style.display = "block";
 
             document.querySelector("#editMovieTitle").value = title;
@@ -230,6 +233,7 @@
             document.querySelector("#editMovieSummary").value = summary;
             document.querySelector("#movieId").value = id;
         })
+
         card.lastElementChild.lastElementChild.addEventListener('click', () => {
             fetch(`http://localhost:3000/movies/${id}`, {method: "DELETE"}).then(r => {
                 fetch("http://localhost:3000/movies")
@@ -239,35 +243,42 @@
                     })
             })
         })
+
+
         document.querySelector("#movie-list").append(card)
     }
 
 
 // When the user clicks on <span> (x), close the modal
-    document.getElementsByClassName("close")[0].onclick = function () {
-        document.querySelector('#myModal').style.display = "none";
+    document.querySelectorAll(".close")[0].onclick = function () {
+        document.querySelector('#editModal').style.display = "none";
     }
 
 // When the user clicks anywhere outside of the modal, close it
     window.onclick = function (event) {
-        if (event.target === modal) {
-            modal.style.display = "none";
+        if (event.target === document.querySelector('#editModal')) {
+            document.querySelector('#editModal').style.display = "none";
         }
         if (event.target === document.querySelector("#navModal")) {
-            closeModal();
+            document.getElementById("navModal").style.display = "none";
         }
     };
 
 
 // Navbar Modal
-    document.querySelector("#movie-control").addEventListener('click', ()=>{
+    document.querySelector("#movie-control").addEventListener('click', () => {
         document.getElementById("navModal").style.display = "flex"
     })
 
-    document.querySelector("#closeNavModal").addEventListener('click', ()=>{
+    document.querySelector("#closeNavModal").addEventListener('click', () => {
         document.getElementById("navModal").style.display = "none"
     })
+
 // End NavBar Modal
 
-
+    function firstLetterUpperCase(str) {
+        return str.replace(/\w\S*/g, function (txt) {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        });
+    }
 })()
