@@ -7,72 +7,80 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Movies App</title>
     <link rel="stylesheet" href="css/movies.css">
+    <link rel="stylesheet" href="css/animista.css">
+
 </head>
 <body>
-<div id="loading-message"></div>
-<nav>
-    <button onclick="sortMovies('title')">Sort by title</button>
-    <button onclick="sortMovies('rating')">Sort by rating</button>
-    <button onclick="sortMovies('genre')">Sort by genre</button>
+<header>
+    <div class="bg-pan-left gradient-hor"></div>
+    <nav>
+        <button onclick="sortMovies('title')">Sort by title</button>
+        <button onclick="sortMovies('rating')">Sort by rating</button>
+        <button onclick="sortMovies('genre')">Sort by genre</button>
 
-    <div id="movie-control">
-        <div id="movie-add" onclick="openModal()">
+        <div id="movie-control">
+            <div id="movie-add">
+                <h2>Add a movie</h2>
+            </div>
+        </div>
+    </nav>
+</header>
+<main>
+    <div id="loading-message"></div>
+
+    <div class="modal" id="navModal">
+        <div class="modal-content">
+            <span id="closeNavModal" style="cursor: pointer; float: right;">&times;</span>
             <h2>Add a movie</h2>
+            <form name="addMovie">
+                <label for="addMovieAuto">Movie Title</label>
+                <input type="text" id="addMovieAuto">
+                <input type="submit" value="submit" id="addMovieSubmit">
+            </form>
+            <h2>Add Movie Manually</h2>
+            <form name="addMovieManual">
+                <label for="newMovieTitle">Movie Title</label>
+                <input type="text" name="movieName" id="newMovieTitle">
+                <label for="newMovieRating">Movie rating</label>
+                <input type="text" name="newMovieRating" id="newMovieRating">
+                <label for="newMovieGenre">Movie Genre</label>
+                <input type="text" name="newMovieGenre" id="newMovieGenre">
+                <label for="newMovieSummary">Movie Summary</label>
+                <input type="text" name="movieSummary" id="newMovieSummary">
+                <input type="submit" value="submit" id="addMovieSubmitManual">
+            </form>
+
+
         </div>
     </div>
-</nav>
-<div class="modal" id="navModal">
-    <div class="modal-content">
-        <span onclick="closeModal()" style="cursor: pointer; float: right;">&times;</span>
-        <h2>Add a movie</h2>
-        <form name="addMovie">
-            <label for="addMovieAuto">Movie Title</label>
-            <input type="text" id="addMovieAuto">
-            <input type="submit" value="submit" id="addMovieSubmit">
-        </form>
-        <h2>Add Movie Manually</h2>
-        <form name="addMovieManual">
-            <label for="newMovieTitle">Movie Title</label>
-            <input type="text" name="movieName" id="newMovieTitle">
-            <label for="newMovieRating">Movie rating</label>
-            <input type="text" name="newMovieRating" id="newMovieRating">
-            <label for="newMovieGenre">Movie Genre</label>
-            <input type="text" name="newMovieGenre" id="newMovieGenre">
-            <label for="newMovieSummary">Movie Summary</label>
-            <input type="text" name="movieSummary" id="newMovieSummary">
-            <input type="submit" value="submit" id="addMovieSubmitManual">
-        </form>
-
-
+    <div class="movies">
+        <div id="movie-list"></div>
     </div>
-</div>
 
-<div id="movieEdit"></div>
 
-<div id="movie-list"></div>
-
-<!-- The Modal -->
-<div id="myModal" class="modal">
-    <!-- Modal content -->
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Edit Movie</h2>
-        <form name="editForm">
-            <label for="movieId">ID:</label>
-            <input type="text" name="movieId" id="movieId" disabled>
-            <label for="editMovieTitle">Title:</label>
-            <input type="text" name="movieTitle" id="editMovieTitle">
-            <label for="editMovieRating">Rating:</label>
-            <input type="text" name="movieRating" id="editMovieRating">
-            <label for="editMovieGenre">Genre:</label>
-            <textarea name="movieGenre" id="editMovieGenre"></textarea>
-            <label for="editMovieSummary">Summary:</label>
-            <textarea name="movieSummary" id="editMovieSummary"></textarea>
-            <input type="submit" value="submit" id="editMovieSubmit">
-        </form>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Edit Movie</h2>
+            <form name="editForm">
+                <label for="movieId">ID:</label>
+                <input type="text" name="movieId" id="movieId" disabled>
+                <label for="editMovieTitle">Title:</label>
+                <input type="text" name="movieTitle" id="editMovieTitle">
+                <label for="editMovieRating">Rating:</label>
+                <input type="text" name="movieRating" id="editMovieRating">
+                <label for="editMovieGenre">Genre:</label>
+                <textarea name="movieGenre" id="editMovieGenre"></textarea>
+                <label for="editMovieSummary">Summary:</label>
+                <textarea name="movieSummary" id="editMovieSummary"></textarea>
+                <input type="submit" value="submit" id="editMovieSubmit">
+            </form>
+        </div>
     </div>
-</div>
-<script src="keys.js"></script>
-<script src="js/movies-application.js"></script>
+    <script src="keys.js"></script>
+    <script src="js/movies-application.js"></script>
+</main>
 </body>
 </html>

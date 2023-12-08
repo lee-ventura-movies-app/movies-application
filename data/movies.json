@@ -33,14 +33,6 @@
       "id": 20
     },
     {
-      "title": "Se7en",
-      "rating": "8.6/10",
-      "summary": "Two detectives, a rookie and a veteran, hunt a serial killer who uses the seven deadly sins as his motives.",
-      "poster": "https://m.media-amazon.com/images/M/MV5BOTUwODM5MTctZjczMi00OTk4LTg3NWUtNmVhMTAzNTNjYjcyXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg",
-      "genre": "Crime, Drama, Mystery",
-      "id": 22
-    },
-    {
       "title": "The Green Hornet",
       "rating": "5.8/10",
       "summary": "Following the death of his father, Britt Reid, heir to his father's large company, teams up with his late dad's assistant Kato to become a masked crime fighting team.",
@@ -81,14 +73,6 @@
       "id": 30
     },
     {
-      "title": "Null",
-      "rating": "7.4/10",
-      "summary": "The character in this surrealist short film takes a medicine called \"Null\" that has very existential adverse effects.",
-      "poster": "https://m.media-amazon.com/images/M/MV5BMjA0OTAzODY2MF5BMl5BanBnXkFtZTcwNjA2NzMzMg@@._V1_SX300.jpg",
-      "genre": "Short, Horror",
-      "id": 31
-    },
-    {
       "title": "Solitary",
       "rating": "1.75",
       "summary": "'Solitary' is a contained sci-fi film about a man who wakes up inside a room to discover he's a prisoner sent into space to form Earth's first colony, and worse - his cell mate Alana is hell bent on destroying everything.",
@@ -97,12 +81,28 @@
       "id": 32
     },
     {
-      "title": "thehunters",
-      "rating": "1.5",
-      "summary": "something",
-      "poster": "undefined",
-      "genre": "Action,adventure",
-      "id": 33
+      "title": "Jumper",
+      "rating": "3.05",
+      "summary": "A young man with teleportation abilities suddenly finds himself in the middle of an ancient war between those like him and their sworn annihilators.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMmFmYWVhMjYtMzMzNi00ZWQ0LTlkNGEtNTg3NmViNWFkM2QzXkEyXkFqcGdeQXVyMjQwMjk0NjI@._V1_SX300.jpg",
+      "genre": "Action, Adventure, Sci-Fi",
+      "id": 34
+    },
+    {
+      "title": "Se7en",
+      "rating": "4.3",
+      "summary": "Two detectives, a rookie and a veteran, hunt a serial killer who uses the seven deadly sins as his motives.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BOTUwODM5MTctZjczMi00OTk4LTg3NWUtNmVhMTAzNTNjYjcyXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg",
+      "genre": "Crime, Drama, Mystery",
+      "id": 35
+    },
+    {
+      "title": "Saw",
+      "rating": "3.8",
+      "summary": "Two strangers awaken in a room with no recollection of how they got there, and soon discover they're pawns in a deadly game perpetrated by a notorious serial killer.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BM2M1MzI1MWYtYmM2ZC00OWY3LTk0ZGMtNmRkNzU1NzEzMWE5XkEyXkFqcGdeQXVyODUwOTkwODk@._V1_SX300.jpg",
+      "genre": "Horror, Mystery, Thriller",
+      "id": 36
     }
   ]
 }
