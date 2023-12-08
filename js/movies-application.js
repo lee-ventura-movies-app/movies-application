@@ -206,7 +206,7 @@
         <div class="img-con">
         <img alt="" src=${poster}>
         </div>
-        <div class="mov-details">
+        <div class="mov-details swing-in-top-fwd">
              <div>
                 <h3>${title}</h3>
                 <p>Rating: ${rating}</p>

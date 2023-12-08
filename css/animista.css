@@ -25,7 +25,11 @@
     top: 0;
     left: 0;
     background-image: linear-gradient(270deg,#cc6aa5,#3e91cc,#2dcca7);
-    background-size: 500% 100%;
+    background-size: 600% 200%;
+}
+.swing-in-top-fwd {
+    -webkit-animation: swing-in-top-fwd 1s ease-in-out alternate both;
+    animation: swing-in-top-fwd 1s ease-in-out alternate both;
 }
 
 @-webkit-keyframes bg-pan-left {
@@ -34,5 +38,37 @@
     }
     100% {
         background-position: 0 50%;
+    }
+}
+@-webkit-keyframes swing-in-top-fwd {
+    0% {
+        -webkit-transform: rotateX(-100deg);
+        transform: rotateX(-100deg);
+        -webkit-transform-origin: top;
+        transform-origin: top;
+        opacity: 0;
+    }
+    100% {
+        -webkit-transform: rotateX(0deg);
+        transform: rotateX(0deg);
+        -webkit-transform-origin: top;
+        transform-origin: top;
+        opacity: 1;
+    }
+}
+@keyframes swing-in-top-fwd {
+    0% {
+        -webkit-transform: rotateX(-100deg);
+        transform: rotateX(-100deg);
+        -webkit-transform-origin: top;
+        transform-origin: top;
+        opacity: 0;
+    }
+    100% {
+        -webkit-transform: rotateX(0deg);
+        transform: rotateX(0deg);
+        -webkit-transform-origin: top;
+        transform-origin: top;
+        opacity: 1;
     }
 }
