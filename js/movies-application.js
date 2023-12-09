@@ -77,7 +77,7 @@
     document.forms.addMovie.addEventListener("submit", (e) => {
         e.preventDefault();
         console.log()
-        if (document.querySelector("#addMovieAuto").value.trim() !== ""){
+        if (document.querySelector("#addMovieAuto").value.trim() !== "") {
             let title = document.querySelector("#addMovieAuto").value
             fetch(`http://www.omdbapi.com/?t=${title}&apikey=${OMDB_KEY}`).then(resp => resp.json()).then(data => {
                 return {
@@ -94,7 +94,9 @@
                         document.querySelector("#addMovieAuto").value = "";
                     })
             })
-        }else {console.log("Movie Not added")}
+        } else {
+            console.log("Movie Not added")
+        }
     })
 
     document.forms.addMovieManual.addEventListener('submit', (e) => {
@@ -112,22 +114,15 @@
             createMovie(resp)
                 .then(() => {
                     updateMovies()
-                        document.querySelector('#newMovieTitle').value = "";
-                        document.querySelector('#newMovieRating').value = "";
-                        document.querySelector('#newMovieSummary').value = "";
-                        document.querySelector('#newMovieGenre').value = "";
-                        document.querySelector("#addMovieMsg").innerText = "Movie Added";
-                    })
-            })
+                    document.querySelector('#newMovieTitle').value = "";
+                    document.querySelector('#newMovieRating').value = "";
+                    document.querySelector('#newMovieSummary').value = "";
+                    document.querySelector('#newMovieGenre').value = "";
+                    document.querySelector("#addMovieMsg").innerText = "Movie Added";
+                })
+        })
     })
 
-    /*function filterSort(){
-        let filteredMovies = []
-
-
-
-
-    }*/
 
     /*Renders movie cards*/
     function renderMovies(movies) {
@@ -180,7 +175,9 @@
         card.lastElementChild.lastElementChild.addEventListener('click', (e) => {
             e.preventDefault();
             deleteMovie(id)
-                .then(()=>{updateMovies()});
+                .then(() => {
+                    updateMovies()
+                });
         })
 
 
@@ -215,8 +212,72 @@
 
 // End NavBar Modal
 
-    function updateMovies(){
-        getMovies().then(movies=>{renderMovies(movies)})
+    function updateMovies() {
+       /* e.preventDefault(); // Prevent form submission*/
+        document.querySelector("#movie-list").innerHTML = "";
+        /*variables might need to be in global scope to function*/
+        let movieFilterBY = "";/*Decide to filter by name or by rating*/
+        let movieRatingFilter = 2;/*Rating number to be sorted by*/
+        let movieGenreFilter = "";/*Filter By selected Genre*/
+        let movieTitleFilter = "";/*Filter by the title*/
+        const filteredMovies = [];/*movie array to be rendered*/
+        let currentSortOption = "";/*The current movie sorting*/
+
+        // Filter movies By name or rating/
+        getMovies().then(movies => {
+            /*Filters movies by title*/
+            movies.forEach((movie) => {
+                switch (movieFilterBY) {
+                    case "title":
+                        if (movie.title.toLowerCase().includes(movieTitleFilter.toLowerCase())) {
+                            filteredMovies.push(movie);
+                        }
+                        break;
+                    case "rating":
+                        if (parseInt(movie.rating)  === movieRatingFilter){
+                            filteredMovies.push(movie)
+                        }
+                        break; case "genre":
+                        if (movie.genre.toLowerCase().includes(movieGenreFilter.toLowerCase())){
+                            filteredMovies.push(movie)
+                        }
+                        break;
+                    default: filteredMovies.push(movie)
+                }
+
+
+            });
+
+                return filteredMovies
+        }).then(() => {
+            /*For sorting by name or rating*/
+            switch (currentSortOption) {
+                case "title":
+                    filteredMovies.sort(function (a, b) {
+                        let x = a.name.toLowerCase();
+                        let y = b.name.toLowerCase();
+                        if (x < y) {
+                            return -1;
+                        }
+                        if (x > y) {
+                            return 1;
+                        }
+                        return 0;
+                    })
+                    break;
+                case "rating":
+                    filteredMovies.sort((a, b) => {
+                        return a.id - b.id
+                    })
+                    break;
+            }
+            return filteredMovies
+
+        }).then(()=>{renderMovies(filteredMovies)})
+
+
     }
+
+    updateMovies()
 
 })()

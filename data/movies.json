@@ -63,6 +63,22 @@
       "poster": "https://m.media-amazon.com/images/M/MV5BMTcwOTMwMDYyMl5BMl5BanBnXkFtZTcwMzAxMjMyNA@@._V1_SX300.jpg",
       "genre": "Action, Comedy, Crime",
       "id": 69
+    },
+    {
+      "title": "Up",
+      "rating": "4.15",
+      "summary": "78-year-old Carl Fredricksen travels to Paradise Falls in his house equipped with balloons, inadvertently taking a young stowaway.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BYjBkM2RjMzItM2M3Ni00N2NjLWE3NzMtMGY4MzE4MDAzMTRiXkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_SX300.jpg",
+      "genre": "Animation, Adventure, Comedy",
+      "id": 70
+    },
+    {
+      "title": "Iron Man",
+      "rating": "3.95",
+      "summary": "After being held captive in an Afghan cave, billionaire engineer Tony Stark creates a unique weaponized suit of armor to fight evil.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMTczNTI2ODUwOF5BMl5BanBnXkFtZTcwMTU0NTIzMw@@._V1_SX300.jpg",
+      "genre": "Action, Adventure, Sci-Fi",
+      "id": 71
     }
   ]
 }
