@@ -1,14 +1,6 @@
 {
   "movies": [
     {
-      "title": "The Green Hornet",
-      "rating": "5.8/10",
-      "summary": "Following the death of his father, Britt Reid, heir to his father's large company, teams up with his late dad's assistant Kato to become a masked crime fighting team.",
-      "poster": "https://m.media-amazon.com/images/M/MV5BMTcwOTMwMDYyMl5BMl5BanBnXkFtZTcwMzAxMjMyNA@@._V1_SX300.jpg",
-      "genre": "Action, Comedy, Crime",
-      "id": 26
-    },
-    {
       "title": "Iron Man",
       "rating": "2",
       "summary": "After being held captive in an Afghan cave, billionaire engineer Tony Stark creates a unique weaponized suit of armor to fight evil.",
@@ -25,36 +17,12 @@
       "id": 30
     },
     {
-      "title": "Deadpool 2",
+      "title": "Not Deadpool",
       "rating": "3.8",
       "summary": "Foul-mouthed mutant mercenary Wade Wilson (a.k.a. Deadpool) assembles a team of fellow mutant rogues to protect a young boy with supernatural abilities from the brutal, time-traveling cyborg Cable.",
       "poster": "https://m.media-amazon.com/images/M/MV5BMDkzNmRhNTMtZDI4NC00Zjg1LTgxM2QtMjYxZDQ3OWJlMDRlXkEyXkFqcGdeQXVyNTU5MjkzMTU@._V1_SX300.jpg",
       "genre": "Action, Adventure, Comedy",
       "id": 41
-    },
-    {
-      "title": "The Girl with All the Gifts",
-      "rating": "3.3",
-      "summary": "A scientist and a teacher living in a dystopian future embark on a journey of survival with a special young girl named Melanie.",
-      "poster": "https://m.media-amazon.com/images/M/MV5BMjQ0NzA4NDcxM15BMl5BanBnXkFtZTgwMTk1NjUzOTE@._V1_SX300.jpg",
-      "genre": "Action, Adventure, Drama",
-      "id": 48
-    },
-    {
-      "title": "Deadpool 2",
-      "rating": "3.8",
-      "summary": "Foul-mouthed mutant mercenary Wade Wilson (a.k.a. Deadpool) assembles a team of fellow mutant rogues to protect a young boy with supernatural abilities from the brutal, time-traveling cyborg Cable.",
-      "poster": "https://m.media-amazon.com/images/M/MV5BMDkzNmRhNTMtZDI4NC00Zjg1LTgxM2QtMjYxZDQ3OWJlMDRlXkEyXkFqcGdeQXVyNTU5MjkzMTU@._V1_SX300.jpg",
-      "genre": "Action, Adventure, Comedy",
-      "id": 50
-    },
-    {
-      "title": "Talk to Me",
-      "rating": "3.55",
-      "summary": "When a group of friends discover how to conjure spirits using an embalmed hand, they become hooked on the new thrill, until one of them goes too far and unleashes terrifying supernatural forces.",
-      "poster": "https://m.media-amazon.com/images/M/MV5BMmY5ZGE4NmUtZWI4OS00ZWJmLWFjMzgtOWUyZjI4NDg3Y2E5XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg",
-      "genre": "Horror, Thriller",
-      "id": 60
     },
     {
       "title": "The Ring",
@@ -73,14 +41,6 @@
       "id": 65
     },
     {
-      "title": "Deadpool",
-      "rating": "4",
-      "summary": "A wisecracking mercenary gets experimented on and becomes immortal yet hideously scarred, and sets out to track down the man who ruined his looks.",
-      "poster": "https://m.media-amazon.com/images/M/MV5BYzE5MjY1ZDgtMTkyNC00MTMyLThhMjAtZGI5OTE1NzFlZGJjXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg",
-      "genre": "Action, Comedy",
-      "id": 66
-    },
-    {
       "title": "The Grudge",
       "rating": "2.95",
       "summary": "An American nurse living and working in Tokyo is exposed to a mysterious supernatural curse, one that locks a person in a powerful rage before claiming their life and spreading to another victim.",
@@ -89,7 +49,7 @@
       "id": 67
     },
     {
-      "title": "Deadpool",
+      "title": "Not Deadpool",
       "rating": "4",
       "summary": "A wisecracking mercenary gets experimented on and becomes immortal yet hideously scarred, and sets out to track down the man who ruined his looks.",
       "poster": "https://m.media-amazon.com/images/M/MV5BYzE5MjY1ZDgtMTkyNC00MTMyLThhMjAtZGI5OTE1NzFlZGJjXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg",
@@ -97,11 +57,11 @@
       "id": 68
     },
     {
-      "title": "The Grudge",
-      "rating": "2.95",
-      "summary": "An American nurse living and working in Tokyo is exposed to a mysterious supernatural curse, one that locks a person in a powerful rage before claiming their life and spreading to another victim.",
-      "poster": "https://m.media-amazon.com/images/M/MV5BMjIxODg1Nzc3NF5BMl5BanBnXkFtZTcwMjM0MjEzMw@@._V1_SX300.jpg",
-      "genre": "Horror, Mystery, Thriller",
+      "title": "The Green Hornet",
+      "rating": "2.9",
+      "summary": "Following the death of his father, Britt Reid, heir to his father's large company, teams up with his late dad's assistant Kato to become a masked crime fighting team.",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMTcwOTMwMDYyMl5BMl5BanBnXkFtZTcwMzAxMjMyNA@@._V1_SX300.jpg",
+      "genre": "Action, Comedy, Crime",
       "id": 69
     }
   ]

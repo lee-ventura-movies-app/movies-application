@@ -1,7 +1,5 @@
 "use strict";
 (() => {
-    const getMovies = fetch("http://localhost:3000/movies").then(response => response.json())
-
 
 // Function to fetch movies, handle loading, and display movie list
     function fetchMoviesAndHandleLoading() {
@@ -62,42 +60,6 @@
             });
     }
 
-
-    const createMovie = async (movie) => {
-        try {
-            const url = 'http://localhost:3000/movies';
-            const options = {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(movie)
-            };
-            const response = await fetch(url, options);
-            const newMovie = await response.json();
-            return newMovie;
-        } catch (error) {
-            console.error(error);
-        }
-    }
-    const editMovie = async (id, movie) => {
-        try {
-            const url = `http://localhost:3000/movies/${id}`;
-            const options = {
-                method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(movie)
-            };
-            const response = await fetch(url, options);
-            const newMovie = await response.json();
-            return newMovie;
-        } catch (error) {
-            console.error(error);
-        }
-    }
-
     document.forms.editForm.addEventListener("submit", async e => {
         e.preventDefault();
         const movieID = document.querySelector("#movieId").value;
@@ -107,51 +69,38 @@
         const genre = document.querySelector("#editMovieGenre").value;
         await editMovie(movieID, {title, rating, summary, genre});
 
-        fetch("http://localhost:3000/movies")
-            .then(response => response.json())
-            .then(data => {
-                console.log(data)
-                renderMovies(data)
-
-            })
+        updateMovies()
 
         document.querySelector('#editModal').style.display = "none"
     });
 
     document.forms.addMovie.addEventListener("submit", (e) => {
         e.preventDefault();
-        let searchTitle = document.querySelector("#addMovieAuto").value
-        fetch(`http://www.omdbapi.com/?t=${searchTitle}&apikey=${OMDB_KEY}`).then(resp => resp.json()).then(data => {
-            let newMovie = {}
-            console.log(data)
-            if (document.querySelector("#addMovieAuto").value.trim() !== "") {
-                newMovie = {
+        console.log()
+        if (document.querySelector("#addMovieAuto").value.trim() !== ""){
+            let title = document.querySelector("#addMovieAuto").value
+            fetch(`http://www.omdbapi.com/?t=${title}&apikey=${OMDB_KEY}`).then(resp => resp.json()).then(data => {
+                return {
                     "title": `${data.Title}`,
                     "rating": `${parseFloat(data.imdbRating) / 2}`,
                     "summary": `${data.Plot}`,
                     "poster": `${data.Poster}`,
                     "genre": `${data.Genre}`
                 }
-            }
-            console.log(newMovie)
-            createMovie(newMovie)
-            document.querySelector("#addMovieAuto").value = "";
-        }).then(r => {
-            fetch("http://localhost:3000/movies")
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data)
-                    setTimeout(()=>{renderMovies(data)}, 500)
-
-                })
-        })
-
+            }).then(resp => {
+                createMovie(resp)
+                    .then(() => {
+                        updateMovies()
+                        document.querySelector("#addMovieAuto").value = "";
+                    })
+            })
+        }else {console.log("Movie Not added")}
     })
 
     document.forms.addMovieManual.addEventListener('submit', (e) => {
         e.preventDefault();
-        let searchTitle = document.querySelector('#newMovieTitle').value
-        fetch(`http://www.omdbapi.com/?t=${searchTitle}&apikey=${OMDB_KEY}`).then(resp => resp.json()).then(data => {
+        let title = document.querySelector('#newMovieTitle').value
+        fetch(`http://www.omdbapi.com/?t=${title}&apikey=${OMDB_KEY}`).then(resp => resp.json()).then(data => {
             let newMovie = {
                 "title": `${document.querySelector('#newMovieTitle').value}`,
                 "rating": `${document.querySelector('#newMovieRating').value}`,
@@ -159,26 +108,20 @@
                 "poster": `${data.Poster}`,
                 "genre": `${document.querySelector('#newMovieGenre').value}`
             }
-            createMovie(newMovie)
-        })
-            .then(r => {
-                fetch("http://localhost:3000/movies")
-                    .then(response => response.json())
-                    .then(data => {
-                        console.log(data)
-                        renderMovies(data)
+        }).then(resp => {
+            createMovie(resp)
+                .then(() => {
+                    updateMovies()
+                        document.querySelector('#newMovieTitle').value = "";
+                        document.querySelector('#newMovieRating').value = "";
+                        document.querySelector('#newMovieSummary').value = "";
+                        document.querySelector('#newMovieGenre').value = "";
+                        document.querySelector("#addMovieMsg").innerText = "Movie Added";
                     })
-
-                document.querySelector('#newMovieTitle').value = "";
-                document.querySelector('#newMovieRating').value = "";
-                document.querySelector('#newMovieSummary').value = "";
-                document.querySelector('#newMovieGenre').value = "";
-                document.querySelector("#addMovieMsg").innerText = "Added New Movie";
             })
     })
 
     /*function filterSort(){
-        let getMovies = fetch("http://localhost:3000/movies").then(response => response.json())
         let filteredMovies = []
 
 
@@ -234,14 +177,10 @@
             document.querySelector("#movieId").value = id;
         })
 
-        card.lastElementChild.lastElementChild.addEventListener('click', () => {
-            fetch(`http://localhost:3000/movies/${id}`, {method: "DELETE"}).then(r => {
-                fetch("http://localhost:3000/movies")
-                    .then(response => response.json())
-                    .then(data => {
-                        renderMovies(data)
-                    })
-            })
+        card.lastElementChild.lastElementChild.addEventListener('click', (e) => {
+            e.preventDefault();
+            deleteMovie(id)
+                .then(()=>{updateMovies()});
         })
 
 
@@ -276,9 +215,8 @@
 
 // End NavBar Modal
 
-    function firstLetterUpperCase(str) {
-        return str.replace(/\w\S*/g, function (txt) {
-            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-        });
+    function updateMovies(){
+        getMovies().then(movies=>{renderMovies(movies)})
     }
+
 })()
