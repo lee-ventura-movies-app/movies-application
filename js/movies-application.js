@@ -246,8 +246,25 @@
                     break;
                 case "rating":
                     filteredMovies.sort((a, b) => {
-                        return a.id - b.id
-                    })
+                        const ratingA = parseFloat(a.rating);
+                        const ratingB = parseFloat(b.rating);
+
+                        return ratingB - ratingA; // Sort in descending order by rating
+                    });
+                    break;
+                case "genre":
+                    filteredMovies.sort((a, b) => {
+                        const genreA = a.genre.toLowerCase();
+                        const genreB = b.genre.toLowerCase();
+
+                        if (genreA < genreB) {
+                            return -1;
+                        }
+                        if (genreA > genreB) {
+                            return 1;
+                        }
+                        return 0;
+                    });
                     break;
             }
             return filteredMovies
