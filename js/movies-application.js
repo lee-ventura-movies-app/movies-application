@@ -1,5 +1,10 @@
 "use strict";
 (() => {
+    let currentSortOption = "";/*The current movie sorting*/
+    window.sortMovies = function(sortOption) {
+        currentSortOption = sortOption;
+        updateMovies();
+    };
 
 // Function to fetch movies, handle loading, and display movie list
     function fetchMoviesAndHandleLoading() {
@@ -34,30 +39,6 @@
     function handleFetchError(error) {
         console.error('Error fetching movies:', error);
         document.getElementById('movie-list').innerHTML = 'Error loading movies. Please try again later.';
-    }
-
-    function sortMovies() {
-        fetch("http://localhost:3000/movies")
-            .then(response => response.json())
-            .then(data => {
-                if (Array.isArray(data)) {
-                    const movies = data;
-                    movies.sort((a, b) => {
-                        const titleA = a.title.toUpperCase();
-                        const titleB = b.title.toUpperCase();
-
-                        if (titleA < titleB) return -1;
-                        if (titleA > titleB) return 1;
-                        return 0;
-                    });
-                    renderMovies(movies);
-                } else {
-                    console.error('Invalid data structure from the server:', data);
-                }
-            })
-            .catch(error => {
-                console.error('Error fetching movies:', error);
-            });
     }
 
     document.forms.editForm.addEventListener("submit", async e => {
@@ -209,7 +190,6 @@
     document.querySelector("#closeNavModal").addEventListener('click', () => {
         document.getElementById("navModal").style.display = "none"
     })
-
 // End NavBar Modal
 
     function updateMovies() {
@@ -221,7 +201,6 @@
         let movieGenreFilter = "";/*Filter By selected Genre*/
         let movieTitleFilter = "";/*Filter by the title*/
         const filteredMovies = [];/*movie array to be rendered*/
-        let currentSortOption = "";/*The current movie sorting*/
 
         // Filter movies By name or rating/
         getMovies().then(movies => {
@@ -254,8 +233,8 @@
             switch (currentSortOption) {
                 case "title":
                     filteredMovies.sort(function (a, b) {
-                        let x = a.name.toLowerCase();
-                        let y = b.name.toLowerCase();
+                        let x = a.title.toLowerCase();
+                        let y = b.title.toLowerCase();
                         if (x < y) {
                             return -1;
                         }
@@ -274,8 +253,6 @@
             return filteredMovies
 
         }).then(()=>{renderMovies(filteredMovies)})
-
-
     }
 
     updateMovies()
