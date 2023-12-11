@@ -85,7 +85,7 @@ import {createMovie, deleteMovie, editMovie, getMovies} from './movies-api.js';
         e.preventDefault();
         let title = document.querySelector('#newMovieTitle').value
         fetch(`http://www.omdbapi.com/?t=${title}&apikey=${OMDB_KEY}`).then(resp => resp.json()).then(data => {
-            let newMovie = {
+            return {
                 "title": `${document.querySelector('#newMovieTitle').value}`,
                 "rating": `${document.querySelector('#newMovieRating').value}`,
                 "summary": `${document.querySelector('#newMovieSummary').value}`,
@@ -94,6 +94,7 @@ import {createMovie, deleteMovie, editMovie, getMovies} from './movies-api.js';
             }
         }).then(resp => {
             createMovie(resp)
+            console.log(resp)
                 .then(() => {
                     updateMovies()
                     document.querySelector('#newMovieTitle').value = "";

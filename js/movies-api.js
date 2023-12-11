@@ -52,6 +52,5 @@ export async function deleteMovie(id) {
         const response = await fetch(url, options);
         return await response.json();
     } catch (error) {
-        console.error(error);
     }
 }
