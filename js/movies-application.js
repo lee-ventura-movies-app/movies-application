@@ -1,7 +1,7 @@
 "use strict";
 (() => {
-    let currentSortOption = "";/*The current movie sorting*/
-    window.sortMovies = function(sortOption) {
+    let currentSortOption = "title";/*The current movie sorting*/
+    window.sortMovies = function (sortOption) {
         currentSortOption = sortOption;
         updateMovies();
     };
@@ -190,44 +190,27 @@
     document.querySelector("#closeNavModal").addEventListener('click', () => {
         document.getElementById("navModal").style.display = "none"
     })
+
 // End NavBar Modal
 
     function updateMovies() {
-       /* e.preventDefault(); // Prevent form submission*/
+        /* e.preventDefault(); // Prevent form submission*/
         document.querySelector("#movie-list").innerHTML = "";
         /*variables might need to be in global scope to function*/
-        let movieFilterBY = "";/*Decide to filter by name or by rating*/
-        let movieRatingFilter = 2;/*Rating number to be sorted by*/
-        let movieGenreFilter = "";/*Filter By selected Genre*/
-        let movieTitleFilter = "";/*Filter by the title*/
-        const filteredMovies = [];/*movie array to be rendered*/
+        let movieRatingFilter = document.querySelector("#filterByRating").value;/*Rating number to be sorted by*/
+        let movieGenreFilter = document.querySelector("#filterByGenre").value.toLowerCase();/*Filter By selected Genre*/
+        let movieTitleFilter = document.querySelector("#searchMovieByTitle").value.toLowerCase();/*Filter by the title*/
+        let filteredMovies = [];/*movie array to be rendered*/
 
         // Filter movies By name or rating/
         getMovies().then(movies => {
-            /*Filters movies by title*/
-            movies.forEach((movie) => {
-                switch (movieFilterBY) {
-                    case "title":
-                        if (movie.title.toLowerCase().includes(movieTitleFilter.toLowerCase())) {
-                            filteredMovies.push(movie);
-                        }
-                        break;
-                    case "rating":
-                        if (parseInt(movie.rating)  === movieRatingFilter){
-                            filteredMovies.push(movie)
-                        }
-                        break; case "genre":
-                        if (movie.genre.toLowerCase().includes(movieGenreFilter.toLowerCase())){
-                            filteredMovies.push(movie)
-                        }
-                        break;
-                    default: filteredMovies.push(movie)
-                }
 
+            filteredMovies = filterMovies(movies, [
+                filterByTitle(movieTitleFilter),
+                filterByRating(movieRatingFilter, movieRatingFilter + 1),
+                filterByGenre(movieGenreFilter)
+            ])
 
-            });
-
-                return filteredMovies
         }).then(() => {
             /*For sorting by name or rating*/
             switch (currentSortOption) {
@@ -269,9 +252,39 @@
             }
             return filteredMovies
 
-        }).then(()=>{renderMovies(filteredMovies)})
+        }).then(() => {
+            renderMovies(filteredMovies)
+        })
     }
 
     updateMovies()
 
+    document.addEventListener("keyup", (e) => {
+        if (e.key === "q") {
+            updateMovies()
+        }
+    })
+
+
+    /*-- Filtering Functions--*/
+
+    /*Creates a stackable filter function*/
+    function filterMovies(moviesArray, filters){
+        return moviesArray.filter(movie => {
+            return filters.every(filter => filter(movie));
+        });
+    }
+    /*-- Creates a filter by title --*/
+    function filterByTitle(movieTitle){
+
+        return  movie => movie.title.toLowerCase().includes(movieTitle)
+    }
+    /*-- creates a filter by rating*/
+    function filterByRating(min, max){
+        return movie => (movie.rating >= min && movie.rating < max) || min === "all"
+    }
+    /*-- creates a filter by genre--*/
+    function filterByGenre(genre){
+        return movie => movie.genre.toLowerCase().includes(genre) || genre === "all"
+    }
 })()

@@ -51,8 +51,17 @@ input[type="submit"] {
     align-items: start;
 }
 
+.search-filter{
+    height: 10rem;
+    width: 10rem;
+    background-color: #4CAF50;
 
 
+}
+.row{
+    display: flex;
+    flex-flow: row nowrap;
+}
 
 #movieEdit {
     display: flex;

@@ -29,8 +29,43 @@
 </header>
 <main>
     <div id="loading-message"></div>
-    <div>
-        <div class="side-nav">
+
+
+    <div class="row">
+        <div class="search-filter">
+            <form class="filter-movies">
+
+                <label for="searchMovieByTitle">Search Movie</label>
+                <input type="text" name="searchMovieByTitle" id="searchMovieByTitle">
+
+                <label for="filterByRating">Filter By Rating</label>
+                <select id="filterByRating">
+                    <option value="all" selected>Show All</option>
+                    <option value="1">★</option>
+                    <option value="2">★★</option>
+                    <option value="3">★★★</option>
+                    <option value="4">★★★★</option>
+                    <option value="5">★★★★★</option>
+                </select>
+
+                <label for="filterByGenre">Filter By Genre</label>
+                <select name="filterByGenre" id="filterByGenre">
+                    <option value="all" selected>Show All</option>
+                    <option value="adventure">Adventure</option>
+                    <option value="action">Action</option>
+                    <option value="horror">Horror</option>
+                </select>
+
+            </form>
+                <div>
+                    <p>Sort By</p>
+                    <button id="sortByTitle">Title</button>
+                    <button id="sortByRating">Rating</button>
+                    <button id="reverseSorting">Reverse Sorting</button>
+                </div>
+
+
+
 
         </div>
         <div class="movies">
