@@ -179,7 +179,7 @@ input[type="submit"] {
             padding: .2em;
 
             &:hover {
-                background-color: #e71616;
+                background-color: limegreen;
             }
         }
 
@@ -290,6 +290,31 @@ input[type="submit"] {
         .edit-movie {
             display: flex;
             flex-direction: column;
+        }
+
+        .close {
+            float: right;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #000;
+        }
+
+        #deleteMessage {
+            padding: 10px;
+        }
+
+        #confirmDelete {
+            padding: 5px;
+            border: black;
+            cursor: pointer;
+        }
+
+        #cancelDelete {
+            padding: 5px;
+            border: black;
+            cursor: pointer;
         }
     }
     /* The Close Button */

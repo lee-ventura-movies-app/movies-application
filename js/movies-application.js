@@ -194,13 +194,66 @@
             document.querySelector("#movieId").value = id;
         })
 
+        // function confirmDelete(movieID) {
+        //     const confirmation = confirm("Are you sure you want to delete this movie?");
+        //     if (confirmation) {
+        //         deleteMovie(movieID)
+        //             .then(() => {
+        //                 updateMovies();
+        //             });
+        //     }
+        // }
+        //
+        // card.lastElementChild.lastElementChild.addEventListener('click', (e) => {
+        //     e.preventDefault();
+        //     const movieID = id; // Assuming 'id' is the unique identifier for the movie
+        //     confirmDelete(movieID);
+        // })
+
+        // Inside your existing code
+
+// Function to show the delete confirmation modal
+        function showDeleteModal(movieID) {
+            const modal = document.getElementById("deleteModal");
+            modal.style.display = "block";
+
+            // Set the movie ID to a data attribute for later use
+            modal.setAttribute("data-movie-id", movieID);
+        }
+
+// Function to hide the delete confirmation modal
+        function hideDeleteModal() {
+            const modal = document.getElementById("deleteModal");
+            modal.style.display = "none";
+        }
+
+// Event listener for the "Delete" button inside createMovieCard
         card.lastElementChild.lastElementChild.addEventListener('click', (e) => {
             e.preventDefault();
-            deleteMovie(id)
+            const movieID = id; // Assuming 'id' is the unique identifier for the movie
+            showDeleteModal(movieID);
+        });
+
+// Event listener for the "Yes" button in the delete modal
+        document.getElementById("confirmDelete").addEventListener('click', () => {
+            const movieID = document.getElementById("deleteModal").getAttribute("data-movie-id");
+            hideDeleteModal();
+            deleteMovie(movieID)
                 .then(() => {
-                    updateMovies()
+                    updateMovies();
                 });
-        })
+        });
+
+// Event listener for the "No" button in the delete modal
+        document.getElementById("cancelDelete").addEventListener('click', () => {
+            hideDeleteModal();
+        });
+
+// Event listener for closing the delete modal
+        document.getElementById("closeDeleteModal").addEventListener('click', () => {
+            hideDeleteModal();
+        });
+
 
         for (let i of card.children[1].children[0].children[1].children) {
             i.addEventListener("mouseenter", () => {
