@@ -2,7 +2,7 @@
 (() => {
     let currentSortOption = "title";/*The current movie sorting*/
     let sortReversed = false;
-    updateMovies()
+
     // window.sortMovies = function (sortOption) {
     //     currentSortOption = sortOption;
     //     updateMovies();
@@ -43,7 +43,7 @@
         document.getElementById('movie-list').innerHTML = 'Error loading movies. Please try again later.';
     }
 
-
+    updateMovies()
 
 
 
@@ -149,7 +149,7 @@
     };
 
     // Navbar Modal
-    document.querySelector("#movie-control").addEventListener('click', () => {
+    document.querySelector("#movie-add").addEventListener('click', () => {
         document.getElementById("navModal").style.display = "flex"
     })
 
@@ -282,10 +282,7 @@
                     break;
             }
 
-            if (sortReversed === true){filteredMovies = filteredMovies.reverse()}
-
-
-
+            if (sortReversed === true){filteredMovies=filteredMovies.reverse()}
 
             return filteredMovies
 
@@ -294,13 +291,13 @@
         })
     }
 
-    updateMovies()
+
     /*Event Listeners*/
 
 
 
 
-
+    updateMovies()
 
     document.addEventListener("keyup", (e) => {
         if (e.key === "q") {
