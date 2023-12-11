@@ -4,59 +4,14 @@ import {createMovie, deleteMovie, editMovie, getMovies} from './movies-api.js';
 
 (() => {
     let currentSortOption = "title";/*The current movie sorting*/
-    let sortReversed = false;
+    let sortReversed = false; /*-- Default --*/
 
-// Function to fetch movies, handle loading, and display movie list
-    function fetchMoviesAndHandleLoading() {
-        const loadingMessage = document.getElementById("loading-message")
-        const navbar = document.querySelector("nav");
-        showLoadingMessage(loadingMessage)
-        // Fetch from movies.json
-        fetch("http://localhost:3000/movies")
-            .then(response => response.json())
-            .then(data => {
-                renderMovies(data)
-                hideLoadingMessage(loadingMessage);
-                navbar.style.display = "flex";
-            })
-            .catch(error => {
-                hideLoadingMessage(loadingMessage);
-                handleFetchError(error);
-            });
-    }
 
+    /*-- On load --*/
     fetchMoviesAndHandleLoading();
 
-// Show loading message
-    function showLoadingMessage(element) {
-        element.style.display = "block";
-    }
 
-// Hide loading message
-    function hideLoadingMessage(element) {
-        element.style.display = "none";
-    }
-
-// Fetch error
-    function handleFetchError(error) {
-        console.error('Error fetching movies:', error);
-        document.getElementById('movie-list').innerHTML = 'Error loading movies. Please try again later.';
-    }
-
-    updateMovies()
-
-    document.forms.editForm.addEventListener("submit", async e => {
-        e.preventDefault();
-        const movieID = document.querySelector("#movieId").value;
-        const title = document.querySelector("#editMovieTitle").value;
-        const rating = document.querySelector("#editMovieRating").value;
-        const summary = document.querySelector("#editMovieSummary").value;
-        const genre = document.querySelector("#editMovieGenre").value;
-        await editMovie(movieID, {title, rating, summary, genre});
-        updateMovies()
-        document.querySelector('#editModal').style.display = "none"
-    });
-
+    /*-- Form Submission event listeners --*/
     document.forms.addMovie.addEventListener("submit", (e) => {
         e.preventDefault();
         console.log()
@@ -105,18 +60,34 @@ import {createMovie, deleteMovie, editMovie, getMovies} from './movies-api.js';
                 })
         })
     })
+    document.forms.editForm.addEventListener("submit", async e => {
+        e.preventDefault();
+        const movieID = document.querySelector("#movieId").value;
+        const title = document.querySelector("#editMovieTitle").value;
+        const rating = document.querySelector("#editMovieRating").value;
+        const summary = document.querySelector("#editMovieSummary").value;
+        const genre = document.querySelector("#editMovieGenre").value;
+        await editMovie(movieID, {title, rating, summary, genre});
+        updateMovies()
+        document.querySelector('#editModal').style.display = "none"
+    });
 
+
+    /*-- Search movie event listener --*/
     document.forms.filterMoviesForm.addEventListener('submit', (e) => {
         e.preventDefault()
         updateMovies()
     })
 
+    /*-- Filters event listeners --*/
     document.querySelector("#filterByRating").addEventListener('change', () => {
         updateMovies()
     })
     document.querySelector("#filterByGenre").addEventListener('change', () => {
         updateMovies()
     })
+
+    /*-- Event Listeners for sorting buttons --*/
     document.querySelector("#sortByTitle").addEventListener('click', () => {
         currentSortOption = "title";
         updateMovies()
@@ -130,11 +101,13 @@ import {createMovie, deleteMovie, editMovie, getMovies} from './movies-api.js';
         updateMovies()
     })
 
+
+
+    /*-- Event listeners for modals --*/
     // When the user clicks on <span> (x), close the modal
     document.querySelectorAll(".close")[0].onclick = function () {
         document.querySelector('#editModal').style.display = "none";
     }
-
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function (event) {
         if (event.target === document.querySelector('#editModal')) {
@@ -145,51 +118,92 @@ import {createMovie, deleteMovie, editMovie, getMovies} from './movies-api.js';
         }
     };
 
-    // Navbar Modal
+    /*-- Add Movie Modal event listeners --*/
     document.querySelector("#movie-add").addEventListener('click', () => {
         document.getElementById("navModal").style.display = "flex"
     })
-
     document.querySelector("#closeNavModal").addEventListener('click', () => {
         document.getElementById("navModal").style.display = "none"
     })
 
-    /*Renders movie cards*/
-    function renderMovies(movies) {
-        document.querySelector("#movie-list").innerHTML = "";
-        for (let movie of movies) {
-            createMovieCard(movie)
-        }
+    /*-- Delete modal--*/
+    // Event listener for the "Yes" button in the delete modal
+    document.getElementById("confirmDelete").addEventListener('click', () => {
+        const movieID = document.getElementById("deleteModal").getAttribute("data-movie-id");
+        hideDeleteModal();
+        deleteMovie(movieID)
+            .then(() => {
+                updateMovies();
+            });
+    });
+
+    // Event listener for the "No" button in the delete modal
+    document.getElementById("cancelDelete").addEventListener('click', () => {
+        hideDeleteModal();
+    });
+
+    // Event listener for closing the delete modal
+    document.getElementById("closeDeleteModal").addEventListener('click', () => {
+        hideDeleteModal();
+    });
+
+
+    /*---- Functions ----*/
+
+// Function to fetch movies, handle loading, and display movie list
+    function fetchMoviesAndHandleLoading() {
+        const loadingMessage = document.getElementById("loading-message")
+        const navbar = document.querySelector("nav");
+        loadingMessage.style.display = "block"
+        // Fetch from movies.json
+        fetch("http://localhost:3000/movies")
+            .then(response => response.json())
+            .then(data => {
+                renderMovies(data)
+                loadingMessage.style.display = "none";
+                navbar.style.display = "flex";
+            })
+            .catch(error => {
+                loadingMessage.style.display = "none";
+                handleFetchError(error);
+            });
+    }
+    // Fetch error
+    function handleFetchError(error) {
+        console.error('Error fetching movies:', error);
+        document.getElementById('movie-list').innerHTML = 'Error loading movies. Please try again later.';
     }
 
     /*Creates a new movie card*/
     function createMovieCard(movie) {
         let card = document.createElement("div");
+        card.classList.add("movie-card")
+
         let title = movie.title;
         let rating = parseFloat(movie.rating);
         let summary = movie.summary;
         let id = movie.id;
         let poster = movie.poster;
         let genre = movie.genre;
-        card.classList.add("movie-card")
+
         card.innerHTML = `
         <div class="img-con">
         <img alt="" src=${poster}>
         </div>
         <div class="mov-details swing-in-top-fwd">
-             <div>
+            <div>
                 <h3>${title}</h3>
-                ${addStarRating(parseFloat(rating), 5).innerHTML}
+                ${addStarRating(rating, 5).innerHTML}
             </div>
             <p class="card-genre">${genre}</p>
             <p>${summary}</p>
             
             <button class="edit-btn">Edit</button>
             <button class="delete-btn">Delete</button>
-          </div>
+        </div>
          `
 
-        /*-- Selects Edit Button --*/
+        /*-- Event listener for the "Edit" button within movie cards --*/
         card.lastElementChild.lastElementChild.previousElementSibling.addEventListener('click', (e) => {
             let modal = document.querySelector("#editModal")
             modal.style.display = "block";
@@ -200,46 +214,11 @@ import {createMovie, deleteMovie, editMovie, getMovies} from './movies-api.js';
             document.querySelector("#movieId").value = id;
         })
 
-        // Function to show the delete confirmation modal
-        function showDeleteModal(movieID) {
-            const modal = document.getElementById("deleteModal");
-            modal.style.display = "block";
-
-            // Set the movie ID to a data attribute for later use
-            modal.setAttribute("data-movie-id", movieID);
-        }
-
-        // Function to hide the delete confirmation modal
-        function hideDeleteModal() {
-            const modal = document.getElementById("deleteModal");
-            modal.style.display = "none";
-        }
-
         // Event listener for the "Delete" button inside createMovieCard
         card.lastElementChild.lastElementChild.addEventListener('click', (e) => {
             e.preventDefault();
             console.log(id)
             showDeleteModal(id);// Assuming 'id' is the unique identifier for the movie
-        });
-
-        // Event listener for the "Yes" button in the delete modal
-        document.getElementById("confirmDelete").addEventListener('click', () => {
-            const movieID = document.getElementById("deleteModal").getAttribute("data-movie-id");
-            hideDeleteModal();
-            deleteMovie(movieID)
-                .then(() => {
-                    updateMovies();
-                });
-        });
-
-        // Event listener for the "No" button in the delete modal
-        document.getElementById("cancelDelete").addEventListener('click', () => {
-            hideDeleteModal();
-        });
-
-        // Event listener for closing the delete modal
-        document.getElementById("closeDeleteModal").addEventListener('click', () => {
-            hideDeleteModal();
         });
 
         /*-- Selects the star rating and adds an event listener --*/
@@ -254,6 +233,15 @@ import {createMovie, deleteMovie, editMovie, getMovies} from './movies-api.js';
         document.querySelector("#movie-list").append(card)
     }
 
+    /*Renders movie cards*/
+    function renderMovies(movies) {
+        document.querySelector("#movie-list").innerHTML = "";
+        for (let movie of movies) {
+            createMovieCard(movie)
+        }
+    }
+
+    /*-- Function to update movies with current parameters --*/
     function updateMovies() {
         /* e.preventDefault(); // Prevent form submission*/
         document.querySelector("#movie-list").innerHTML = "";
@@ -316,15 +304,6 @@ import {createMovie, deleteMovie, editMovie, getMovies} from './movies-api.js';
         })
     }
 
-    /*Event Listeners*/
-    updateMovies()
-
-    document.addEventListener("keyup", (e) => {
-        if (e.key === "q") {
-            updateMovies()
-        }
-    })
-
     /*Creates a stackable filter function*/
     function filterMovies(moviesArray, filters) {
         return moviesArray.filter(movie => {
@@ -337,7 +316,7 @@ import {createMovie, deleteMovie, editMovie, getMovies} from './movies-api.js';
         return movie => movie.title.toLowerCase().includes(movieTitle)
     }
 
-    /*-- creates a filter by rating*/
+    /*-- Creates a filter by rating*/
     function filterByRating(min, max) {
         return movie => (movie.rating >= min && movie.rating < max) || min === "all"
     }
@@ -347,6 +326,7 @@ import {createMovie, deleteMovie, editMovie, getMovies} from './movies-api.js';
         return movie => movie.genre.toLowerCase().includes(genre) || genre === "all"
     }
 
+    /*-- Generates stars for rating --*/
     function addStarRating(rating, maxStars) {
         let starsRating = document.createElement("div")
         let div = document.createElement("div");
@@ -368,5 +348,18 @@ import {createMovie, deleteMovie, editMovie, getMovies} from './movies-api.js';
 
         // return document.querySelector("body").append(starsRating)
         return starsRating
+    }
+
+    /*-- Functions for delete confirmation modal --*/
+    function hideDeleteModal() {
+        const modal = document.getElementById("deleteModal");
+        modal.style.display = "none";
+    }
+    function showDeleteModal(movieID) {
+        const modal = document.getElementById("deleteModal");
+        modal.style.display = "block";
+
+        // Set the movie ID to a data attribute for later use
+        modal.setAttribute("data-movie-id", movieID);
     }
 })()
