@@ -9,6 +9,7 @@ import { getMovies, createMovie, editMovie, deleteMovie } from './movies-api.js'
 // Function to fetch movies, handle loading, and display movie list
     function fetchMoviesAndHandleLoading() {
         const loadingMessage = document.getElementById("loading-message")
+        const navbar = document.querySelector("nav");
         showLoadingMessage(loadingMessage)
         // Fetch from movies.json
         fetch("http://localhost:3000/movies")
@@ -16,6 +17,7 @@ import { getMovies, createMovie, editMovie, deleteMovie } from './movies-api.js'
             .then(data => {
                 renderMovies(data)
                 hideLoadingMessage(loadingMessage);
+                navbar.style.display = "flex";
             })
             .catch(error => {
                 hideLoadingMessage(loadingMessage);

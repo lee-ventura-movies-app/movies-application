@@ -11,7 +11,7 @@ body {
 
 /*Navbar*/
 nav {
-    display: flex;
+    display: none;
     flex-flow: row nowrap;
     background-color: rgba(51, 51, 51, 0.55);
     padding: 10px;
