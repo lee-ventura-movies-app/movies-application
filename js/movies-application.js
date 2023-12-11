@@ -1,4 +1,7 @@
 "use strict";
+import {OMDB_KEY} from "./keys";
+import { getMovies, createMovie, editMovie, deleteMovie } from './movies-api.js';
+
 (() => {
     let currentSortOption = "title";/*The current movie sorting*/
     let sortReversed = false;
@@ -193,24 +196,6 @@
             document.querySelector("#editMovieSummary").value = summary;
             document.querySelector("#movieId").value = id;
         })
-
-        // function confirmDelete(movieID) {
-        //     const confirmation = confirm("Are you sure you want to delete this movie?");
-        //     if (confirmation) {
-        //         deleteMovie(movieID)
-        //             .then(() => {
-        //                 updateMovies();
-        //             });
-        //     }
-        // }
-        //
-        // card.lastElementChild.lastElementChild.addEventListener('click', (e) => {
-        //     e.preventDefault();
-        //     const movieID = id; // Assuming 'id' is the unique identifier for the movie
-        //     confirmDelete(movieID);
-        // })
-
-        // Inside your existing code
 
 // Function to show the delete confirmation modal
         function showDeleteModal(movieID) {

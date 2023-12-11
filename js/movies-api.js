@@ -1,4 +1,4 @@
-async function getMovies() {
+export async function getMovies() {
     try {
         const moviesUrl = 'http://localhost:3000/movies';
         const moviesResponse = await fetch(moviesUrl);
@@ -9,7 +9,7 @@ async function getMovies() {
     }
 }
 
-const createMovie = async (movie) => {
+export const createMovie = async (movie) => {
     try {
         const url = 'http://localhost:3000/movies';
         const options = {
@@ -26,7 +26,7 @@ const createMovie = async (movie) => {
     }
 }
 
-async function editMovie(id, movie) {
+export async function editMovie(id, movie) {
     try {
         const url = `http://localhost:3000/movies/${id}`;
         const options = {
@@ -43,7 +43,7 @@ async function editMovie(id, movie) {
     }
 }
 
-async function deleteMovie(id) {
+export async function deleteMovie(id) {
     try {
         const url = `http://localhost:3000/movies/${id}`;
         const options = {
