@@ -3,11 +3,6 @@
     let currentSortOption = "title";/*The current movie sorting*/
     let sortReversed = false;
 
-    // window.sortMovies = function (sortOption) {
-    //     currentSortOption = sortOption;
-    //     updateMovies();
-    // };
-
 // Function to fetch movies, handle loading, and display movie list
     function fetchMoviesAndHandleLoading() {
         const loadingMessage = document.getElementById("loading-message")
@@ -45,8 +40,6 @@
 
     updateMovies()
 
-
-
     document.forms.editForm.addEventListener("submit", async e => {
         e.preventDefault();
         const movieID = document.querySelector("#movieId").value;
@@ -55,9 +48,7 @@
         const summary = document.querySelector("#editMovieSummary").value;
         const genre = document.querySelector("#editMovieGenre").value;
         await editMovie(movieID, {title, rating, summary, genre});
-
         updateMovies()
-
         document.querySelector('#editModal').style.display = "none"
     });
 
@@ -109,26 +100,26 @@
         })
     })
 
-    document.forms.filterMoviesForm.addEventListener('submit', (e)=>{
+    document.forms.filterMoviesForm.addEventListener('submit', (e) => {
         e.preventDefault()
         updateMovies()
     })
 
-    document.querySelector("#filterByRating").addEventListener('change',()=>{
+    document.querySelector("#filterByRating").addEventListener('change', () => {
         updateMovies()
     })
-    document.querySelector("#filterByGenre").addEventListener('change',()=>{
+    document.querySelector("#filterByGenre").addEventListener('change', () => {
         updateMovies()
     })
-    document.querySelector("#sortByTitle").addEventListener('click',()=>{
+    document.querySelector("#sortByTitle").addEventListener('click', () => {
         currentSortOption = "title";
         updateMovies()
     })
-    document.querySelector("#sortByRating").addEventListener('click',()=>{
+    document.querySelector("#sortByRating").addEventListener('click', () => {
         currentSortOption = "rating";
         updateMovies();
     })
-    document.querySelector("#reverseSorting").addEventListener('click',()=>{
+    document.querySelector("#reverseSorting").addEventListener('click', () => {
         sortReversed = sortReversed === false;
         updateMovies()
     })
@@ -157,7 +148,6 @@
         document.getElementById("navModal").style.display = "none"
     })
 
-
     /*Renders movie cards*/
     function renderMovies(movies) {
         document.querySelector("#movie-list").innerHTML = "";
@@ -175,7 +165,6 @@
         let id = movie.id;
         let poster = movie.poster;
         let genre = movie.genre;
-
         card.classList.add("movie-card")
         card.innerHTML = `
         <div class="img-con">
@@ -186,7 +175,6 @@
                 <h3>${title}</h3>
 <!--                <p>Rating: ${rating}</p>-->
                 ${addStarRating(parseFloat(rating), 5).innerHTML}
-                
             </div>
             <p>${genre}</p>
             <div>
@@ -196,11 +184,9 @@
             <button>Delete</button>
         </div>
         `
-
         card.lastElementChild.lastElementChild.previousElementSibling.addEventListener('click', (e) => {
             let modal = document.querySelector("#editModal")
             modal.style.display = "block";
-
             document.querySelector("#editMovieTitle").value = title;
             document.querySelector("#editMovieRating").value = rating;
             document.querySelector("#editMovieGenre").value = genre;
@@ -216,11 +202,14 @@
                 });
         })
 
-        for(let i of card.children[1].children[0].children[1].children){
-            i.addEventListener("mouseenter",()=>{i.classList.toggle("selected-rating")})
-            i.addEventListener("mouseleave",()=>{i.classList.toggle("selected-rating")})
+        for (let i of card.children[1].children[0].children[1].children) {
+            i.addEventListener("mouseenter", () => {
+                i.classList.toggle("selected-rating")
+            })
+            i.addEventListener("mouseleave", () => {
+                i.classList.toggle("selected-rating")
+            })
         }
-
         document.querySelector("#movie-list").append(card)
     }
 
@@ -235,13 +224,11 @@
 
         // Filter movies By name or rating/
         getMovies().then(movies => {
-
             filteredMovies = filterMovies(movies, [
                 filterByTitle(movieTitleFilter),
                 filterByRating(movieRatingFilter, movieRatingFilter + 1),
                 filterByGenre(movieGenreFilter)
             ])
-
         }).then(() => {
             /*For sorting by name or rating*/
             switch (currentSortOption) {
@@ -262,7 +249,6 @@
                     filteredMovies.sort((a, b) => {
                         const ratingA = parseFloat(a.rating);
                         const ratingB = parseFloat(b.rating);
-
                         return ratingB - ratingA; // Sort in descending order by rating
                     });
                     break;
@@ -270,7 +256,6 @@
                     filteredMovies.sort((a, b) => {
                         const genreA = a.genre.toLowerCase();
                         const genreB = b.genre.toLowerCase();
-
                         if (genreA < genreB) {
                             return -1;
                         }
@@ -281,22 +266,16 @@
                     });
                     break;
             }
-
-            if (sortReversed === true){filteredMovies=filteredMovies.reverse()}
-
+            if (sortReversed === true) {
+                filteredMovies = filteredMovies.reverse()
+            }
             return filteredMovies
-
         }).then(() => {
             renderMovies(filteredMovies)
         })
     }
 
-
     /*Event Listeners*/
-
-
-
-
     updateMovies()
 
     document.addEventListener("keyup", (e) => {
@@ -305,26 +284,25 @@
         }
     })
 
-
-    /*-- Filtering Functions--*/
-
     /*Creates a stackable filter function*/
-    function filterMovies(moviesArray, filters){
+    function filterMovies(moviesArray, filters) {
         return moviesArray.filter(movie => {
             return filters.every(filter => filter(movie));
         });
     }
-    /*-- Creates a filter by title --*/
-    function filterByTitle(movieTitle){
 
-        return  movie => movie.title.toLowerCase().includes(movieTitle)
+    /*-- Creates a filter by title --*/
+    function filterByTitle(movieTitle) {
+        return movie => movie.title.toLowerCase().includes(movieTitle)
     }
+
     /*-- creates a filter by rating*/
-    function filterByRating(min, max){
+    function filterByRating(min, max) {
         return movie => (movie.rating >= min && movie.rating < max) || min === "all"
     }
+
     /*-- creates a filter by genre--*/
-    function filterByGenre(genre){
+    function filterByGenre(genre) {
         return movie => movie.genre.toLowerCase().includes(genre) || genre === "all"
     }
 
@@ -334,11 +312,15 @@
         div.classList.add("star-rating")
         for (let i = 1; i <= maxStars; i++) {
             let star = document.createElement("i")
-
-
-            if (i > rating) {star.className = "bx bx-star star"}
-            if (i > rating && i - 1 < rating - .2) {star.className = 'bx bxs-star-half star'}
-            if (i <= rating + .2) {star.className = "bx bxs-star star"}
+            if (i > rating) {
+                star.className = "bx bx-star star"
+            }
+            if (i > rating && i - 1 < rating - .2) {
+                star.className = 'bx bxs-star-half star'
+            }
+            if (i <= rating + .2) {
+                star.className = "bx bxs-star star"
+            }
             div.append(star)
         }
         starsRating.append(div)

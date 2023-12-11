@@ -16,6 +16,7 @@
     -webkit-animation: bg-pan-left 20s infinite alternate both;
     animation: bg-pan-left 20s infinite alternate both;
 }
+
 .gradient-hor{
     z-index: -1;
     position: fixed;
@@ -27,6 +28,7 @@
     background-image: linear-gradient(270deg,#cc6aa5,#3e91cc,#2dcca7);
     background-size: 600% 200%;
 }
+
 .swing-in-top-fwd {
     -webkit-animation: swing-in-top-fwd 1s ease-in-out alternate both;
     animation: swing-in-top-fwd 1s ease-in-out alternate both;

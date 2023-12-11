@@ -46,8 +46,6 @@ input[type="submit"] {
 .movies {
 }
 
-
-
 .row {
     width: 100%;
     display: flex;
@@ -63,9 +61,6 @@ input[type="submit"] {
     display: flex;
     flex-flow: column;
 
-
-
-
     & form {
         display: flex;
         flex-flow: row wrap;
@@ -78,7 +73,6 @@ input[type="submit"] {
             border: none;
             margin: .5em .5em;
             padding: .5em;
-
         }
 
         & label, & input, & select {
@@ -86,7 +80,6 @@ input[type="submit"] {
             text-align: center;
             width: 100%;
             margin: .5em .5em;
-
         }
 
         & select {
@@ -104,9 +97,8 @@ input[type="submit"] {
             align-items: center;
             flex-grow: 1;
         }
-
-
     }
+
     .sort-options{
         display: flex;
         flex-flow: row wrap;
@@ -123,14 +115,11 @@ input[type="submit"] {
             padding: .5em;
             margin: .5em .5em;
             border-radius: .5em;
-
             &:nth-child(4){
                 width: 100%;
             }
         }
-
     }
-
 }
 
 #movie-list {
@@ -141,11 +130,9 @@ input[type="submit"] {
     flex-flow: row wrap;
     justify-content: start;
     align-items: start;
-
 }
 
 .movie-card {
-
     width: 100px;
     margin: .5em .5em 0;
     position: relative;
@@ -164,7 +151,6 @@ input[type="submit"] {
         }
     }
 
-
     .mov-details {
         background-color: rgba(0, 0, 0, 0.06);
         display: none;
@@ -175,7 +161,6 @@ input[type="submit"] {
         width: 300px;
         left: calc(-300px / 3);
         margin: 1em 0 2em;
-
         align-content: space-evenly;
         border-radius: 1em;
         box-shadow: black 5px 5px 10px 0;
@@ -188,10 +173,8 @@ input[type="submit"] {
         }
 
         & button {
-
             height: max-content;
             width: 20%;
-
             margin: 0 auto .5em;
             padding: .2em;
 
@@ -207,9 +190,7 @@ input[type="submit"] {
             overflow: hidden;
             text-overflow: ellipsis;
         }
-
     }
-
 
     &:hover {
         cursor: pointer;
@@ -232,7 +213,6 @@ input[type="submit"] {
     .star {
         width: min-content;
         font-size: .8rem;
-
         &:hover {
             color: #ffea00;
         }
@@ -240,7 +220,6 @@ input[type="submit"] {
         &:has(~ .selected-rating) {
             color: red;
         }
-
     }
 
     .selected-rating {
@@ -273,7 +252,6 @@ input[type="submit"] {
     background-color: rgba(0, 0, 0, 0.4);
 
     /* Modal Content/Box */
-
     .modal-content {
         position: relative;
         background-color: #fefefe;
@@ -313,12 +291,8 @@ input[type="submit"] {
             display: flex;
             flex-direction: column;
         }
-
-
     }
-
     /* The Close Button */
-
     .close {
         position: absolute;
         top: 0;

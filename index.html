@@ -2,15 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
     <title>Movies App</title>
-    <link rel="stylesheet" href="css/movies.css">
-    <link rel="stylesheet" href="css/animista.css">
+    <link href="css/movies.css" rel="stylesheet">
+    <link href="css/animista.css" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
-
 </head>
 <body>
 <header>
@@ -24,20 +22,16 @@
 </header>
 <main>
     <div id="loading-message"></div>
-
-
     <div class="row">
         <div class="filter-sort">
-            <form name="filterMoviesForm" class="filter-movies">
-
+            <form class="filter-movies" name="filterMoviesForm">
                 <label for="searchMovieByTitle">Search Movie</label>
-                <input type="text" name="searchMovieByTitle" id="searchMovieByTitle">
+                <input id="searchMovieByTitle" name="searchMovieByTitle" type="text">
                 <button type="submit">Submit</button>
-
                 <div class="filter">
                     <label for="filterByRating">Filter By Rating</label>
                     <select id="filterByRating">
-                        <option value="all" selected>Show All</option>
+                        <option selected value="all">Show All</option>
                         <option value="1">★</option>
                         <option value="2">★★</option>
                         <option value="3">★★★</option>
@@ -45,18 +39,15 @@
                         <option value="5">★★★★★</option>
                     </select>
                 </div>
-
                 <div class="filter">
                     <label for="filterByGenre">Filter By Genre</label>
-                    <select name="filterByGenre" id="filterByGenre">
-                        <option value="all" selected>Show All</option>
+                    <select id="filterByGenre" name="filterByGenre">
+                        <option selected value="all">Show All</option>
                         <option value="adventure">Adventure</option>
                         <option value="action">Action</option>
                         <option value="horror">Horror</option>
                     </select>
                 </div>
-
-
             </form>
             <div class="sort-options">
                 <p>Sort By</p>
@@ -64,63 +55,55 @@
                 <button id="sortByRating">Rating</button>
                 <button id="reverseSorting">Reverse Sorting</button>
             </div>
-
-
         </div>
-
-            <div id="movie-list"></div>
-
+        <div id="movie-list"></div>
     </div>
-
     <!-- Modal To Add Movie -->
     <div class="modal" id="navModal">
         <div class="modal-content">
             <span id="closeNavModal" style="cursor: pointer; float: right;">&times;</span>
             <h2>Add a movie</h2>
-            <form name="addMovie" class="addMovie">
+            <form class="addMovie" name="addMovie">
                 <label for="addMovieAuto">Movie Title</label>
-                <input type="text" id="addMovieAuto">
-                <input type="submit" value="submit" id="addMovieSubmit" class="submit">
+                <input id="addMovieAuto" type="text">
+                <input class="submit" id="addMovieSubmit" type="submit" value="submit">
             </form>
             <h2>Add Movie Manually</h2>
-            <form name="addMovieManual" class="addMovie">
+            <form class="addMovie" name="addMovieManual">
                 <label for="newMovieTitle">Movie Title</label>
-                <input type="text" name="movieName" id="newMovieTitle">
+                <input id="newMovieTitle" name="movieName" type="text">
                 <label for="newMovieRating">Movie rating</label>
-                <input type="text" name="newMovieRating" id="newMovieRating">
+                <input id="newMovieRating" name="newMovieRating" type="text">
                 <label for="newMovieGenre">Movie Genre</label>
-                <input type="text" name="newMovieGenre" id="newMovieGenre">
+                <input id="newMovieGenre" name="newMovieGenre" type="text">
                 <label for="newMovieSummary">Movie Summary</label>
-                <textarea name="movieSummary" id="newMovieSummary"></textarea>
-                <input type="submit" value="submit" id="addMovieSubmitManual" class="submit">
+                <textarea id="newMovieSummary" name="movieSummary"></textarea>
+                <input class="submit" id="addMovieSubmitManual" type="submit" value="submit">
             </form>
             <h2 id="addMovieMsg"></h2>
         </div>
     </div>
-
     <!-- Modal For Edit Movies -->
-    <div id="editModal" class="modal">
+    <div class="modal" id="editModal">
         <!-- Modal content -->
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2>Edit Movie</h2>
-            <form name="editForm" class="edit-movie">
+            <form class="edit-movie" name="editForm">
                 <label for="movieId">ID:</label>
-                <input type="text" name="movieId" id="movieId" disabled>
+                <input disabled id="movieId" name="movieId" type="text">
                 <label for="editMovieTitle">Title:</label>
-                <input type="text" name="movieTitle" id="editMovieTitle">
+                <input id="editMovieTitle" name="movieTitle" type="text">
                 <label for="editMovieRating">Rating:</label>
-                <input type="text" name="movieRating" id="editMovieRating">
+                <input id="editMovieRating" name="movieRating" type="text">
                 <label for="editMovieGenre">Genre:</label>
-                <textarea name="movieGenre" id="editMovieGenre"></textarea>
+                <textarea id="editMovieGenre" name="movieGenre"></textarea>
                 <label for="editMovieSummary">Summary:</label>
-                <textarea name="movieSummary" id="editMovieSummary"></textarea>
-                <input type="submit" value="submit" id="editMovieSubmit">
+                <textarea id="editMovieSummary" name="movieSummary"></textarea>
+                <input id="editMovieSubmit" type="submit" value="submit">
             </form>
         </div>
     </div>
-
-
     <script src="keys.js"></script>
     <script src="js/movies-api.js"></script>
     <script src="js/movies-application.js"></script>

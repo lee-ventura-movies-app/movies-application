@@ -1,6 +1,5 @@
 async function getMovies() {
     try {
-
         const moviesUrl = 'http://localhost:3000/movies';
         const moviesResponse = await fetch(moviesUrl);
 
@@ -27,7 +26,7 @@ const createMovie = async (movie) => {
     }
 }
 
-async function editMovie(id, movie){
+async function editMovie(id, movie) {
     try {
         const url = `http://localhost:3000/movies/${id}`;
         const options = {
@@ -43,20 +42,6 @@ async function editMovie(id, movie){
         console.error(error);
     }
 }
-
-/*
-async function getOmdbDataByTitle(title) {
-    try {
-        // Get all the movies
-        const omdbUrl = `http://www.omdbapi.com/?t=' + title + '&apikey=' + OMDB_API_KEY;
-        const omdbResponse = await fetch(omdbUrl);
-
-        // Return the movies array
-        return await omdbResponse.json();
-    } catch (error) {
-        return null;
-    }
-}*/
 
 async function deleteMovie(id) {
     try {
