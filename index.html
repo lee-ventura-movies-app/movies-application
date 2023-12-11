@@ -8,6 +8,7 @@
     <title>Movies App</title>
     <link rel="stylesheet" href="css/movies.css">
     <link rel="stylesheet" href="css/animista.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
 
 </head>
@@ -15,15 +16,9 @@
 <header>
     <div class="bg-pan-left gradient-hor"></div>
     <nav>
-        <button onclick="sortMovies('title')">Sort by title</button>
-        <button onclick="sortMovies('rating')">Sort by rating</button>
-        <button onclick="sortMovies('genre')">Sort by genre</button>
-
-
-        <div id="movie-control">
-            <div id="movie-add">
-                <h2>Add a movie</h2>
-            </div>
+        <h1>Movies</h1>
+        <div id="movie-add">
+            <h2>Add a movie</h2>
         </div>
     </nav>
 </header>
@@ -32,40 +27,43 @@
 
 
     <div class="row">
-        <div class="search-filter">
+        <div class="filter-sort">
             <form name="filterMoviesForm" class="filter-movies">
 
                 <label for="searchMovieByTitle">Search Movie</label>
                 <input type="text" name="searchMovieByTitle" id="searchMovieByTitle">
-                <input type="submit" value="Submit">
+                <button type="submit">Submit</button>
 
-                <label for="filterByRating">Filter By Rating</label>
-                <select id="filterByRating">
-                    <option value="all" selected>Show All</option>
-                    <option value="1">★</option>
-                    <option value="2">★★</option>
-                    <option value="3">★★★</option>
-                    <option value="4">★★★★</option>
-                    <option value="5">★★★★★</option>
-                </select>
+                <div class="filter">
+                    <label for="filterByRating">Filter By Rating</label>
+                    <select id="filterByRating">
+                        <option value="all" selected>Show All</option>
+                        <option value="1">★</option>
+                        <option value="2">★★</option>
+                        <option value="3">★★★</option>
+                        <option value="4">★★★★</option>
+                        <option value="5">★★★★★</option>
+                    </select>
+                </div>
 
-                <label for="filterByGenre">Filter By Genre</label>
-                <select name="filterByGenre" id="filterByGenre">
-                    <option value="all" selected>Show All</option>
-                    <option value="adventure">Adventure</option>
-                    <option value="action">Action</option>
-                    <option value="horror">Horror</option>
-                </select>
-
-            </form>
-                <div>
-                    <p>Sort By</p>
-                    <button id="sortByTitle">Title</button>
-                    <button id="sortByRating">Rating</button>
-                    <button id="reverseSorting">Reverse Sorting</button>
+                <div class="filter">
+                    <label for="filterByGenre">Filter By Genre</label>
+                    <select name="filterByGenre" id="filterByGenre">
+                        <option value="all" selected>Show All</option>
+                        <option value="adventure">Adventure</option>
+                        <option value="action">Action</option>
+                        <option value="horror">Horror</option>
+                    </select>
                 </div>
 
 
+            </form>
+            <div>
+                <p>Sort By</p>
+                <button id="sortByTitle">Title</button>
+                <button id="sortByRating">Rating</button>
+                <button id="reverseSorting">Reverse Sorting</button>
+            </div>
 
 
         </div>

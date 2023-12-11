@@ -2,10 +2,11 @@
 (() => {
     let currentSortOption = "title";/*The current movie sorting*/
     let sortReversed = false;
-    window.sortMovies = function (sortOption) {
-        currentSortOption = sortOption;
-        updateMovies();
-    };
+    updateMovies()
+    // window.sortMovies = function (sortOption) {
+    //     currentSortOption = sortOption;
+    //     updateMovies();
+    // };
 
 // Function to fetch movies, handle loading, and display movie list
     function fetchMoviesAndHandleLoading() {
@@ -84,7 +85,6 @@
             console.log("Movie Not added")
         }
     })
-
     document.forms.addMovieManual.addEventListener('submit', (e) => {
         e.preventDefault();
         let title = document.querySelector('#newMovieTitle').value
@@ -117,11 +117,9 @@
     document.querySelector("#filterByRating").addEventListener('change',()=>{
         updateMovies()
     })
-
     document.querySelector("#filterByGenre").addEventListener('change',()=>{
         updateMovies()
     })
-
     document.querySelector("#sortByTitle").addEventListener('click',()=>{
         currentSortOption = "title";
         updateMovies()
@@ -172,7 +170,7 @@
     function createMovieCard(movie) {
         let card = document.createElement("div");
         let title = movie.title;
-        let rating = movie.rating;
+        let rating = parseFloat(movie.rating);
         let summary = movie.summary;
         let id = movie.id;
         let poster = movie.poster;
@@ -186,13 +184,15 @@
         <div class="mov-details swing-in-top-fwd">
              <div>
                 <h3>${title}</h3>
-                <p>Rating: ${rating}</p>
-                <p>${genre}</p>
+<!--                <p>Rating: ${rating}</p>-->
+                ${addStarRating(parseFloat(rating), 5).innerHTML}
+                
             </div>
+            <p>${genre}</p>
             <div>
             <p>${summary}</p>
             </div>
-            <button id="myBtn">Edit</button>
+            <button>Edit</button>
             <button>Delete</button>
         </div>
         `
@@ -216,6 +216,10 @@
                 });
         })
 
+        for(let i of card.children[1].children[0].children[1].children){
+            i.addEventListener("mouseenter",()=>{i.classList.toggle("selected-rating")})
+            i.addEventListener("mouseleave",()=>{i.classList.toggle("selected-rating")})
+        }
 
         document.querySelector("#movie-list").append(card)
     }
@@ -325,5 +329,24 @@
     /*-- creates a filter by genre--*/
     function filterByGenre(genre){
         return movie => movie.genre.toLowerCase().includes(genre) || genre === "all"
+    }
+
+    function addStarRating(rating, maxStars) {
+        let starsRating = document.createElement("div")
+        let div = document.createElement("div");
+        div.classList.add("star-rating")
+        for (let i = 1; i <= maxStars; i++) {
+            let star = document.createElement("i")
+
+
+            if (i > rating) {star.className = "bx bx-star star"}
+            if (i > rating && i - 1 < rating - .2) {star.className = 'bx bxs-star-half star'}
+            if (i <= rating + .2) {star.className = "bx bxs-star star"}
+            div.append(star)
+        }
+        starsRating.append(div)
+
+        // return document.querySelector("body").append(starsRating)
+        return starsRating
     }
 })()
