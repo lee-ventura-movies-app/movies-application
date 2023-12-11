@@ -46,13 +46,12 @@ input[type="submit"] {
 .movies {
 }
 
-#movie-list {
-    width: 70%;
-    margin: 0 auto;
+
+
+.row {
+    width: 100%;
     display: flex;
-    flex-flow: row wrap;
-    justify-content: start;
-    align-items: start;
+    flex-flow: row nowrap;
 }
 
 .filter-sort {
@@ -74,10 +73,11 @@ input[type="submit"] {
 
         & button{
             width: 100%;
-            height: 2em;
+
             border-radius: .5em;
             border: none;
             margin: .5em .5em;
+            padding: .5em;
 
         }
 
@@ -104,38 +104,45 @@ input[type="submit"] {
             align-items: center;
             flex-grow: 1;
         }
+
+
     }
-
-
-}
-
-.row {
-    display: flex;
-    flex-flow: row nowrap;
-}
-
-#movieEdit {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-flow: column;
-    position: sticky;
-    height: max-content;
-    width: max-content;
-
-    & div {
-        background-color: teal;
-        padding: 1em;
-    }
-
-    & form {
-
+    .sort-options{
         display: flex;
-        flex-flow: column;
+        flex-flow: row wrap;
+        justify-content: center;
+        width: 100%;
+
+        & p{
+            width: 100%;
+            text-align: center;
+        }
+
+        & button{
+            flex-grow: 1;
+            padding: .5em;
+            margin: .5em .5em;
+            border-radius: .5em;
+
+            &:nth-child(4){
+                width: 100%;
+            }
+        }
+
     }
+
 }
 
-/*Navbar end*/
+#movie-list {
+    width: 100%;
+    flex-grow: 1;
+    margin: 0 auto;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: start;
+    align-items: start;
+
+}
 
 .movie-card {
 
