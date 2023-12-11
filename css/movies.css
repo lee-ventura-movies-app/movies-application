@@ -4,25 +4,24 @@
     padding: 0;
 }
 
-body {
-    overflow: auto;
-    scrollbar-gutter: stable both-edges;
-}
-
 /*Navbar*/
 nav {
+    align-items: center;
+    background-color: rgba(51, 51, 51, 0.35);
     display: none;
     flex-flow: row nowrap;
-    background-color: rgba(51, 51, 51, 0.55);
+    justify-content: space-between;
     padding: 10px;
     text-align: center;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
+
+    & h1{
+        font-family: cursive;
+        font-size: 2.4rem;
+        text-shadow: 3px 0 3px #e6f1fc;
+    }
 }
 
-
+/*-- Add a Movie "Button" --*/
 #movie-add {
     background-color: #42B5EA;
     padding: 10px;
@@ -30,20 +29,10 @@ nav {
     cursor: pointer;
 }
 
+
 input {
     padding: 5px;
-    border: 1px solid #ccc;
     border-radius: 3px;
-}
-
-input[type="submit"] {
-    background-color: #4CAF50;
-    color: white;
-    cursor: pointer;
-}
-
-/*End Navbar*/
-.movies {
 }
 
 .row {
@@ -52,50 +41,55 @@ input[type="submit"] {
     flex-flow: row nowrap;
 }
 
+/*-- Container for filter and sort section --*/
 .filter-sort {
     background-color: rgba(0, 0, 0, 0.55);
-    max-width: 25%;
-    margin: 1em;
-    height: min-content;
     border-radius: 1em;
+    color: #42B5EA;
     display: flex;
     flex-flow: column;
+    font-size: 1.1rem;
+    margin: 1em;
+    max-width: 25%;
+    height: min-content;
 
     & form {
+        margin: .5em 0;
+        align-items: center;
         display: flex;
         flex-flow: row wrap;
-        align-items: center;
 
         & button{
-            width: 100%;
-
-            border-radius: .5em;
             border: none;
+            border-radius: .5em;
             margin: .5em .5em;
             padding: .5em;
+            width: 100%;
         }
 
         & label, & input, & select {
+            border: none;
             border-radius: .5em;
+            margin: .5em .5em;
+            padding: 5px;
             text-align: center;
             width: 100%;
-            margin: .5em .5em;
         }
 
         & select {
+            border: none;
+            flex-grow: 1;
             min-height: 2em;
             width: 100%;
-            flex-grow: 1;
-            border: none;
         }
 
         .filter {
-            padding: 0 .5em;
+            align-items: center;
             display: flex;
             flex-flow: column;
-            justify-content: center;
-            align-items: center;
             flex-grow: 1;
+            justify-content: center;
+            padding: 0 .5em;
         }
     }
 
@@ -103,33 +97,38 @@ input[type="submit"] {
         display: flex;
         flex-flow: row wrap;
         justify-content: center;
+        margin-bottom: .5em;
         width: 100%;
 
         & p{
-            width: 100%;
+            font-size: 1.2rem;
             text-align: center;
+            width: 100%;
         }
 
         & button{
-            flex-grow: 1;
-            padding: .5em;
-            margin: .5em .5em;
+            border: none;
             border-radius: .5em;
+            flex-grow: 1;
+            margin: .5em .5em;
+            padding: .5em;
+
             &:nth-child(4){
                 width: 100%;
             }
         }
     }
 }
-
+/*-- Container for the movie cards --*/
 #movie-list {
-    width: 100%;
-    flex-grow: 1;
-    margin: 0 auto;
+    align-items: start;
+    align-content: start;
     display: flex;
     flex-flow: row wrap;
+    flex-grow: 1;
     justify-content: start;
-    align-items: start;
+    margin: .5em 8% ;
+    width: 100%;
 }
 
 .movie-card {
@@ -152,50 +151,69 @@ input[type="submit"] {
     }
 
     .mov-details {
-        background-color: antiquewhite;
-        display: none;
-        padding: 10px;
-        flex-flow: row wrap;
-        position: relative;
-        top: 0;
-        z-index: 1;
-        width: 300px;
-        left: calc(-300px / 3);
-        margin: 1em 0 2em;
         align-content: space-evenly;
+        backdrop-filter: blur(10px);
+        background-color: rgba(97, 195, 145, 0.61);
         border-radius: 1em;
         box-shadow: black 5px 5px 10px 0;
+        display: none;
+        flex-flow: row wrap;
+        left: calc(-300px / 3);
+        margin: 1em 0 2em;
+        padding: 10px;
+        position: relative;
+        top: 0;
+        width: 300px;
+        z-index: 1;
 
         & div:nth-child(1) {
-            padding: .5em;
-            width: 100%;
             display: flex;
             flex-direction: column;
+            padding: .5em;
+            width: 100%;
+        }
+
+        .card-genre{
+            font-size: .8rem;
+            font-style: italic;
+            margin:0 8px;
+            text-effect: outline;
         }
 
         & button {
+            border: none;
+            border-radius: .5em;
+            box-shadow: black 7px 5px 10px 0;
             height: max-content;
-            width: 20%;
+            flex-grow: 1;
+            max-width: 40%;
             margin: 1em auto;
             padding: .2em;
 
             &:hover {
                 background-color: limegreen;
+                cursor: pointer;
             }
         }
 
+        .delete-btn{
+            &:hover{background-color: red}
+        }
+
         & p {
-            margin-bottom: .5em;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 4;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            &:nth-child(3){
+                display: -webkit-box;
+                max-height: 4.5lh;
+                overflow: hidden;
+                padding: .5em;
+                text-overflow: ellipsis;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 4;
+            }
         }
     }
 
     &:hover {
-        cursor: pointer;
         transition: all 400ms ease-in;
         transform: scale(120%);
 
@@ -206,30 +224,32 @@ input[type="submit"] {
 }
 
 .star-rating {
+    color: gold;
     display: flex;
     flex-flow: row nowrap;
-    /*flex-flow: column;*/
-    color: gold;
+    margin-top: .5em;
     width: min-content;
+
 
     .star {
         width: min-content;
         font-size: .8rem;
         &:hover {
-            color: #ffea00;
+            color: #ecfd02;
         }
 
         &:has(~ .selected-rating) {
-            color: red;
+            color: #ecfd02;
         }
     }
 
     .selected-rating {
         &:hover {
-            color: red
+            color: #ecfd02;
         }
     }
 }
+
 
 #loading-message {
     position: fixed;

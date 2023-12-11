@@ -1,6 +1,6 @@
 "use strict";
 import {OMDB_KEY} from "./keys.js";
-import { getMovies, createMovie, editMovie, deleteMovie } from './movies-api.js';
+import {createMovie, deleteMovie, editMovie, getMovies} from './movies-api.js';
 
 (() => {
     let currentSortOption = "title";/*The current movie sorting*/
@@ -178,17 +178,17 @@ import { getMovies, createMovie, editMovie, deleteMovie } from './movies-api.js'
         <div class="mov-details swing-in-top-fwd">
              <div>
                 <h3>${title}</h3>
-<!--                <p>Rating: ${rating}</p>-->
                 ${addStarRating(parseFloat(rating), 5).innerHTML}
             </div>
-            <p>${genre}</p>
-            <div>
+            <p class="card-genre">${genre}</p>
             <p>${summary}</p>
-            </div>
-            <button>Edit</button>
-            <button>Delete</button>
-        </div>
-        `
+            
+            <button class="edit-btn">Edit</button>
+            <button class="delete-btn">Delete</button>
+          </div>
+         `
+
+        /*-- Selects Edit Button --*/
         card.lastElementChild.lastElementChild.previousElementSibling.addEventListener('click', (e) => {
             let modal = document.querySelector("#editModal")
             modal.style.display = "block";
@@ -199,7 +199,7 @@ import { getMovies, createMovie, editMovie, deleteMovie } from './movies-api.js'
             document.querySelector("#movieId").value = id;
         })
 
-// Function to show the delete confirmation modal
+        // Function to show the delete confirmation modal
         function showDeleteModal(movieID) {
             const modal = document.getElementById("deleteModal");
             modal.style.display = "block";
@@ -208,20 +208,20 @@ import { getMovies, createMovie, editMovie, deleteMovie } from './movies-api.js'
             modal.setAttribute("data-movie-id", movieID);
         }
 
-// Function to hide the delete confirmation modal
+        // Function to hide the delete confirmation modal
         function hideDeleteModal() {
             const modal = document.getElementById("deleteModal");
             modal.style.display = "none";
         }
 
-// Event listener for the "Delete" button inside createMovieCard
+        // Event listener for the "Delete" button inside createMovieCard
         card.lastElementChild.lastElementChild.addEventListener('click', (e) => {
             e.preventDefault();
-            const movieID = id; // Assuming 'id' is the unique identifier for the movie
-            showDeleteModal(movieID);
+            console.log(id)
+            showDeleteModal(id);// Assuming 'id' is the unique identifier for the movie
         });
 
-// Event listener for the "Yes" button in the delete modal
+        // Event listener for the "Yes" button in the delete modal
         document.getElementById("confirmDelete").addEventListener('click', () => {
             const movieID = document.getElementById("deleteModal").getAttribute("data-movie-id");
             hideDeleteModal();
@@ -231,17 +231,17 @@ import { getMovies, createMovie, editMovie, deleteMovie } from './movies-api.js'
                 });
         });
 
-// Event listener for the "No" button in the delete modal
+        // Event listener for the "No" button in the delete modal
         document.getElementById("cancelDelete").addEventListener('click', () => {
             hideDeleteModal();
         });
 
-// Event listener for closing the delete modal
+        // Event listener for closing the delete modal
         document.getElementById("closeDeleteModal").addEventListener('click', () => {
             hideDeleteModal();
         });
 
-
+        /*-- Selects the star rating and adds an event listener --*/
         for (let i of card.children[1].children[0].children[1].children) {
             i.addEventListener("mouseenter", () => {
                 i.classList.toggle("selected-rating")
