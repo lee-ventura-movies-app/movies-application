@@ -233,7 +233,7 @@ input {
 
     .star {
         width: min-content;
-        font-size: .8rem;
+        font-size: .9rem;
         &:hover {
             color: #ecfd02;
         }
