@@ -1,6 +1,7 @@
 "use strict";
 (() => {
     let currentSortOption = "title";/*The current movie sorting*/
+    let sortReversed = false;
     window.sortMovies = function (sortOption) {
         currentSortOption = sortOption;
         updateMovies();
@@ -40,6 +41,10 @@
         console.error('Error fetching movies:', error);
         document.getElementById('movie-list').innerHTML = 'Error loading movies. Please try again later.';
     }
+
+
+
+
 
     document.forms.editForm.addEventListener("submit", async e => {
         e.preventDefault();
@@ -104,6 +109,56 @@
         })
     })
 
+    document.forms.filterMoviesForm.addEventListener('submit', (e)=>{
+        e.preventDefault()
+        updateMovies()
+    })
+
+    document.querySelector("#filterByRating").addEventListener('change',()=>{
+        updateMovies()
+    })
+
+    document.querySelector("#filterByGenre").addEventListener('change',()=>{
+        updateMovies()
+    })
+
+    document.querySelector("#sortByTitle").addEventListener('click',()=>{
+        currentSortOption = "title";
+        updateMovies()
+    })
+    document.querySelector("#sortByRating").addEventListener('click',()=>{
+        currentSortOption = "rating";
+        updateMovies();
+    })
+    document.querySelector("#reverseSorting").addEventListener('click',()=>{
+        sortReversed = sortReversed === false;
+        updateMovies()
+    })
+
+    // When the user clicks on <span> (x), close the modal
+    document.querySelectorAll(".close")[0].onclick = function () {
+        document.querySelector('#editModal').style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target === document.querySelector('#editModal')) {
+            document.querySelector('#editModal').style.display = "none";
+        }
+        if (event.target === document.querySelector("#navModal")) {
+            document.getElementById("navModal").style.display = "none";
+        }
+    };
+
+    // Navbar Modal
+    document.querySelector("#movie-control").addEventListener('click', () => {
+        document.getElementById("navModal").style.display = "flex"
+    })
+
+    document.querySelector("#closeNavModal").addEventListener('click', () => {
+        document.getElementById("navModal").style.display = "none"
+    })
+
 
     /*Renders movie cards*/
     function renderMovies(movies) {
@@ -165,34 +220,6 @@
         document.querySelector("#movie-list").append(card)
     }
 
-
-// When the user clicks on <span> (x), close the modal
-    document.querySelectorAll(".close")[0].onclick = function () {
-        document.querySelector('#editModal').style.display = "none";
-    }
-
-// When the user clicks anywhere outside of the modal, close it
-    window.onclick = function (event) {
-        if (event.target === document.querySelector('#editModal')) {
-            document.querySelector('#editModal').style.display = "none";
-        }
-        if (event.target === document.querySelector("#navModal")) {
-            document.getElementById("navModal").style.display = "none";
-        }
-    };
-
-
-// Navbar Modal
-    document.querySelector("#movie-control").addEventListener('click', () => {
-        document.getElementById("navModal").style.display = "flex"
-    })
-
-    document.querySelector("#closeNavModal").addEventListener('click', () => {
-        document.getElementById("navModal").style.display = "none"
-    })
-
-// End NavBar Modal
-
     function updateMovies() {
         /* e.preventDefault(); // Prevent form submission*/
         document.querySelector("#movie-list").innerHTML = "";
@@ -250,6 +277,12 @@
                     });
                     break;
             }
+
+            if (sortReversed === true){filteredMovies = filteredMovies.reverse()}
+
+
+
+
             return filteredMovies
 
         }).then(() => {
@@ -258,6 +291,12 @@
     }
 
     updateMovies()
+    /*Event Listeners*/
+
+
+
+
+
 
     document.addEventListener("keyup", (e) => {
         if (e.key === "q") {
