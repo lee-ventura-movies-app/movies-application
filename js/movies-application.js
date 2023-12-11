@@ -1,5 +1,5 @@
 "use strict";
-import {OMDB_KEY} from "./keys";
+import {OMDB_KEY} from "./keys.js";
 import { getMovies, createMovie, editMovie, deleteMovie } from './movies-api.js';
 
 (() => {
