@@ -49,7 +49,6 @@ import {createMovie, deleteMovie, editMovie, getMovies} from './movies-api.js';
             }
         }).then(resp => {
             createMovie(resp)
-            console.log(resp)
                 .then(() => {
                     updateMovies()
                     document.querySelector('#newMovieTitle').value = "";
